@@ -55,8 +55,9 @@ package gs.util
 		if(raw==null)
 		{
 			trace("WARNING: The format string for printf was null or empty, returning an empty string.");
-			return "";	
+			return "";
 		}
+		if(rest[0] is Array)rest=rest[0];
 		/*
 		 * % -> the start of a substitution hole
 		 * (some_var_name) -> [optional] used in named substitutions

@@ -1,5 +1,6 @@
 package gs.tracking 
 {
+	import gs.util.printf;
 	import gs.util.ObjectUtils;
 	import gs.util.XMLUtils;
 	
@@ -116,16 +117,27 @@ package gs.tracking
 				var prop:String;
 				var value:String;
 				var traceobj:Object={};
+				var printfKey:String;
+				var printfFormat:String;
+				var printfValues:Array;
 				for each(var x:XML in n.children())
 				{
 					prop=x.name();
 					if(prop=="trackLink")continue;
 					value=x.toString();
 					traceobj[prop]=value;
-					if(dyd[prop])value+=dyd[prop];
+					if(XMLUtils.hasAttrib(x,"printfValuesKey"))
+					{
+						printfFormat=value;
+						printfKey=x.@printfValuesKey;
+						printfValues=dyd[printfKey];
+						value=printf(printfFormat,printfValues);
+						traceobj[prop]=value;
+					}
+					else if(dyd[prop])value+=dyd[prop];
 					actionsource[prop]=value;
 				}
-				if(!actionsource.pageName) trace("WARNING: The pageName propery wasn't set on the actionsource. Not firing track().");
+				//if(!actionsource.pageName) trace("WARNING: The pageName propery wasn't set on the actionsource. Not firing track().");
 				if(!XMLUtils.hasNode(n,"trackLink"))
 				{
 					if(traces)
@@ -138,9 +150,43 @@ package gs.tracking
 				}
 				if(XMLUtils.hasNode(n,"trackLink"))
 				{
-					var url:String=XMLUtils.walkForValue(n,"trackLink.url");
-					var type:String=XMLUtils.walkForValue(n,"trackLink.type");
-					var name:String=XMLUtils.walkForValue(n,"trackLink.name");
+					var urlNode:XML;
+					var typeNode:XML;
+					var nameNode:XML;
+					var url:String;
+					var type:String;
+					var name:String;
+					var trackLink:XML=new XML(n.trackLink);
+					if(XMLUtils.hasNode(trackLink,"url")) urlNode=new XML(trackLink.url);
+					if(XMLUtils.hasNode(trackLink,"type")) typeNode=new XML(trackLink.type);
+					if(XMLUtils.hasNode(trackLink,"name")) nameNode=new XML(trackLink["name"]);
+					if(XMLUtils.hasAttrib(urlNode,"printfValuesKey"))
+					{
+						printfKey=urlNode.@printfValuesKey;
+						printfFormat=urlNode.toString();
+						printfValues=dyd[printfKey];
+						url=printf(printfFormat,printfValues);
+					}
+					else url=XMLUtils.walkForValue(n,"trackLink.url");
+					
+					if(XMLUtils.hasAttrib(typeNode,"printfValuesKey"))
+					{
+						printfKey=typeNode.@printfValuesKey;
+						printfFormat=typeNode.toString();
+						printfValues=dyd[printfKey];
+						type=printf(printfFormat,printfValues);
+					}
+					else type=XMLUtils.walkForValue(n,"trackLink.type");
+					
+					if(XMLUtils.hasAttrib(nameNode,"printfValuesKey"))
+					{
+						printfKey=nameNode.@printfValuesKey;
+						printfFormat=nameNode.toString();
+						printfValues=dyd[printfKey];
+						name=printf(printfFormat,printfValues);
+					}
+					else name=XMLUtils.walkForValue(n,"trackLink.name");
+					
 					if(!url||url=="")url=null;
 					if(!type)type="o";
 					if(traces) trace("--trackLink(" + ((url)?url:name) + "," + type + "," + name + ")--");
