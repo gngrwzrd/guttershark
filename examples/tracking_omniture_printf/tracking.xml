@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tracking>
+	<track id="trackTest1">
+		<omniture>
+			<track>
+				<!--
+				By listing properties only it triggers the "track"
+				method on actionsource to be called.
+				
+				You can define any property / value here. The tracking
+				class enumerates all nodes and defines them on the
+				actionsource component before firing.
+				-->
+				<pageName printfValuesKey="testPrintfValues">test %s %d asdf</pageName>
+			</track>
+		</omniture>
+	</track>
+	
+	
+	<track id="trackTest2">
+		<omniture>
+			<track>
+				<pageName>test</pageName>
+				<prop6>test2</prop6>
+				<eVar4>hello</eVar4>
+				<events>event20</events>
+				<!--
+				Adding a "trackLink" node triggers the "trackLink" method on
+				the actionsource instance to be called.
+				-->
+				<trackLink>
+					<url printfValuesKey="urlPrintfValues">http://www.whitehouse.ocom/%s</url> <!-- optional, if this isn't set it uses the "name" as the url --> 
+					<type>o</type> <!-- o for custom, d for download, e for exit -->
+					<name>adfasdf</name>
+				</trackLink>
+			</track>
+		</omniture>
+	</track>
+	
+</tracking>
