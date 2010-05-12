@@ -308,9 +308,8 @@ package gs.http
 		public function set data(val:Object):void
 		{
 			_data=val;
-			var key:String;
 			var urlv:URLVariables=new URLVariables();
-			for(key in val) urlv[key]=val;
+			for(var key:String in _data)urlv[key]=_data[key];
 			request.data=urlv;
 		}
 		
