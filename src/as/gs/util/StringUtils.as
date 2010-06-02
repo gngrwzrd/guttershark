@@ -17,6 +17,50 @@ package gs.util
 		private static const MAXIMUM_CARD_LENGTH:int=16;
 		
 		/**
+		 * Unescapes and re-encodes a URI. This is specifically for when
+		 * dealing with accepting URL unescaped strings that come in from
+		 * flashvars.
+		 * 
+		 * <listing>	
+		 * Turns: http://something.com/DataProvider.ashx?c=en_US&q=??test&m=media
+		 * Into:  http://something.com/DataProvider.ashx?c=en_US&q=%3F%3Ftest&m=media
+		 * </listing>
+		 * 
+		 * @param str The http URL string to encode. 
+		 */
+		public function encodeURI2(str:String):String
+		{
+			var raw:String = unescape(str);
+			var i:int = (raw.indexOf("?") > -1) ? raw.indexOf("?")+1 : -1;
+			if(i == -1) return raw;
+			var first:String = raw.substr(0,i);
+			var end:String = raw.substr(i,raw.length);
+			var splitreg:RegExp = /(\&?[a-zA-Z0-9_]{1,}=)/g;
+			var matches:Array = end.match(splitreg);
+			//trace("matches",matches);
+			var encoded:String = first;
+			var l:int = matches.length;
+			var name:String;
+			var match:String;
+			var value:String;
+			var valueString:String;
+			var valueStringPieces:Array;
+			var s:String = end;
+			for(i = l-1;i>-1;i--) {
+				match = matches[i];
+				name = match.replace("&","");
+				name = name.replace("=","");
+				valueStringPieces = s.split(match);
+				valueString = valueStringPieces[valueStringPieces.length-1];
+				s = valueStringPieces[0];
+				value = escape(valueString);
+				//trace("match:",match,"name:",name,"valueString:",valueString,"value:",value);
+				encoded += ((i == l-1) ? "" : "&") +name+"="+value;
+			}
+			return encoded;
+		}
+		
+		/**
 		 * Returns a string wrapped in a span with a custom class. This
 		 * returns a string like: <code>&lt;span class='myClass'&gt;myText&lt;/span&gt;</code>
 		 */
