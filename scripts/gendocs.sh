@@ -2,13 +2,31 @@
 ME=`whoami`
 ASDOC="/Users/${ME}/Development/lib/flex3sdk/bin/"
 AS_PATH="/Users/${ME}/Development/lib/actionscript/"
+if [ -d "/Applications/Adobe Flash CS4/Common/Configuration/Component Source/ActionScript 3.0/User Interface" ]; then
+	PATH1="/Applications/Adobe Flash CS4/Common/Configuration/Component Source/ActionScript 3.0/User Interface"
+fi
+if [ -d "/Applications/Adobe CS4/Adobe Flash CS4/Common/Configuration/Component Source/ActionScript 3.0/User Interface" ]; then
+	PATH1="/Applications/Adobe CS4/Adobe Flash CS4/Common/Configuration/Component Source/ActionScript 3.0/User Interface"
+fi
+if [ -d "/Applications/Adobe Flash CS4/Common/Configuration/Component Source/ActionScript 3.0/FLVPlayback" ]; then
+	PATH2="/Applications/Adobe Flash CS4/Common/Configuration/Component Source/ActionScript 3.0/FLVPlayback"
+fi
+if [ -d "/Applications/Adobe CS4/Adobe Flash CS4/Common/Configuration/Component Source/ActionScript 3.0/FLVPlayback" ]; then
+	PATH2="/Applications/Adobe CS4/Adobe Flash CS4/Common/Configuration/Component Source/ActionScript 3.0/FLVPlayback"
+fi
+if [ -d "/Applications/Adobe Flash CS4/Common/Configuration/ActionScript 3.0/projects/Flash/src" ]; then
+	PATH3="/Applications/Adobe Flash CS4/Common/Configuration/ActionScript 3.0/projects/Flash/src"
+fi
+if [ -d "/Applications/Adobe CS4/Adobe Flash CS4/Common/Configuration/ActionScript 3.0/projects/Flash/src" ]; then
+	PATH3="/Applications/Adobe CS4/Adobe Flash CS4/Common/Configuration/ActionScript 3.0/projects/Flash/src"
+fi
 rm -rf ./docs/*
 ${ASDOC}asdoc \
 -source-path ./src/as/ \
 -source-path ${AS_PATH}/externals/ \
--source-path "/Applications/Adobe Flash CS4/Common/Configuration/Component Source/ActionScript 3.0/User Interface" \
--source-path "/Applications/Adobe Flash CS4/Common/Configuration/Component Source/ActionScript 3.0/FLVPlayback" \
--source-path "/Applications/Adobe Flash CS4/Common/Configuration/ActionScript 3.0/projects/Flash/src" \
+-source-path "${PATH1}" \
+-source-path "${PATH2}" \
+-source-path "${PATH3}" \
 -doc-sources ./src/as/gs/ \
 -main-title "Guttershark Flash API Docs" \
 -window-title "Guttershark Flash API Docs" \
