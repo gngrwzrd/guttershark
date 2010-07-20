@@ -367,7 +367,7 @@ package gs.remoting
 			if(onIOError!=null)onIOError();
 			else trace("WARNING: An IOError occured but the onIOError callback is not set.");
 			if(onConnectFailed!=null)onConnectFailed();
-			else trace("WARNING: The connection failed but the onConnectFail callback is not set.");
+			else trace("WARNING: The connection failed but the onConnectFailed callback is not set.");
 			connection.close();
 			connection=null;
 		}
@@ -403,7 +403,7 @@ package gs.remoting
 					complete=true;
 					clearTimeout(connectTimeoutId);
 					if(onConnectFailed!=null)onConnectFailed();
-					else trace("WARNING: The connection failed but the onConnectFail callback is not set.");
+					else trace("WARNING: The connection failed but the onConnectFailed callback is not set.");
 					break;
 				case "NetConnection.Call.BadVersion":
 					sent=false;
@@ -440,7 +440,7 @@ package gs.remoting
 					clearTimeout(connectTimeoutId);
 					clearTimeout(timeoutid);
 					if(onConnectFailed!=null)onConnectFailed();
-					else trace("WARNING: The connection failed but the onConnectFail callback is not set.");
+					else trace("WARNING: The connection failed but the onConnectFailed callback is not set.");
 					break;
 				default:
 					trace("Unknown Status Event {" + event.info.code + "}");
