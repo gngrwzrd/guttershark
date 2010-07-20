@@ -23,7 +23,6 @@ package
 		override protected function onModelReady():void
 		{
 			super.onModelReady();
-			
 		}
 		
 		override protected function startPreload():void
