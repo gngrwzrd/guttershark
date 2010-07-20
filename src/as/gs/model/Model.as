@@ -39,6 +39,7 @@ package gs.model
 	 *    &lt;assets&gt;
 	 *        &lt;asset libraryName="clayBanner1" source="clay_banners_1.jpg" preload="true" /&gt;
 	 *        &lt;asset libraryName="clayBanner2" source="clay_banners_2.jpg" /&gt;
+	 *        &lt;asset libraryName="clayBanner3" source="clay_banners_3.jpg" forceReload="true" /&gt;
 	 *        &lt;asset libraryName="clayWebpage" source="clay_webpage.jpg" /&gt;
 	 *        &lt;asset libraryName="rssFeed" source="http://codeendeavor.com/feed" forceType="xml" /&gt;
 	 *        &lt;asset libraryName="fonts" source="fonts.swf" preload="true" /&gt;
