@@ -411,7 +411,13 @@ package gs.model
 			var payload:Array=[];
 			var i:int=0;
 			var l:int=x.length();
-			for(;i<l;i++)payload.push(getAssetByLibraryName(x[int(i)].@libraryName));
+			var ln:String;
+			var n:*;
+			for(;i<l;i++) {
+				n=x[int(i)];
+				if(AssetManager.isAvailable(n.@libraryName) && n.@forceReload!=undefined && n.@forceReload!="true") continue;
+				payload.push(getAssetByLibraryName(n.@libraryName));
+			}
 			//for each(n in x..asset)payload.push(getAssetByLibraryName(n.@libraryName));
 			//modelcache.cacheObject(cacheKey,payload);
 			return payload;
@@ -436,6 +442,7 @@ package gs.model
 				if(n.@preload==undefined||n.@preload=="false")continue;
 				var ft:String=(n.@forceType!=undefined&&n.@forceType!="")?n.@forceType:null;
 				var src:String=n.@source||n.@src;
+				if(AssetManager.isAvailable(n.@libraryName) && n.@forceReload!=undefined && n.@forceReload!="true") continue;
 				if(n.attribute("path")!=undefined)src=getPath(n.@path.toString())+src;
 				var ast:Asset=new Asset(src,n.@libraryName,ft);
 				payload.push(ast);
