@@ -1015,7 +1015,7 @@ package gs.util
 		 */
 		public static function hasBr(str:String):Boolean
 		{
-			return (str.split("<br").length>0)?true:false;
+			return (str.split("<br").length>1)?true:false;
 		}
 
 		/**
