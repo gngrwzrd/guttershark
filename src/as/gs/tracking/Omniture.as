@@ -91,9 +91,8 @@ package gs.tracking
 		 * 
 		 * @param _actionsource The actionsource component.
 		 */
-		public function Omniture(_actionsource:*):void
+		public function Omniture(_actionsource:* = null):void
 		{
-			if(!_actionsource)throw new ArgumentError("ERROR: Parameter {actionsource} cannot be null.");
 			actionsource=_actionsource;
 		}
 		
@@ -104,6 +103,7 @@ package gs.tracking
 		 */
 		public function clearVars():void
 		{
+			if(!actionsource) return;
 			var i:int=1;
 			for(;i<50;i++)
 			{
@@ -163,7 +163,7 @@ package gs.tracking
 					else if(dyd[prop])value+=dyd[prop];
 					traceobj[prop]=value;
 					eiobj[prop]=value;
-					actionsource[prop]=value;
+					if(actionsource) actionsource[prop]=value;
 				}
 				//if(!actionsource.pageName) trace("WARNING: The pageName propery wasn't set on the actionsource. Not firing track().");
 				if(!XMLUtils.hasNode(n,"trackLink"))
@@ -183,7 +183,7 @@ package gs.tracking
 						ExternalInterface.call(sendTrackingObjectToEI,eiobj);
 						return;
 					}
-					actionsource.track();
+					if(actionsource) actionsource.track();
 				}
 				if(XMLUtils.hasNode(n,"trackLink"))
 				{
@@ -224,7 +224,7 @@ package gs.tracking
 					if(!url||url=="")url=null;
 					if(!type)type="o";
 					if(traces) trace("--trackLink(" + ((url)?url:name) + "," + type + "," + name + ")--");
-					actionsource.trackLink(url,type,name);
+					if(actionsource) actionsource.trackLink(url,type,name);
 				}
 			}
 		}
