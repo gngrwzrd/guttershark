@@ -66,7 +66,7 @@ package
 			omniture.traces=true;
 			track.omniture=omniture;
 			//omniture.sendTrackingIDToEI = "word";
-			omniture.sendTrackingObjectToEI = "clickTag";
+			omniture.sendTrackingObjectToEI = "clickTrack";
 			
 			//let the tracking instance handle the button for you.
 			track.register(button1,MouseEvent.CLICK,"trackTest1");
