@@ -35,10 +35,11 @@ package gs.tracking
 		/**
 		 * Sends a tracking call.
 		 * 
+		 * @param id The id that will fire.
 		 * @param node The xml node for omniture.
 		 * @param options Tracking options.
 		 */
-		public function track(node:XML,options:Object):void
+		public function track(id:String,node:XML,options:Object):void
 		{
 			if(!Tracking.assertions(options))return;
 			var dd:* =Tracking.getDynamicData(options);
