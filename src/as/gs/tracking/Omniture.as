@@ -1,5 +1,6 @@
 package gs.tracking 
 {
+	import flash.external.ExternalInterface;
 	import gs.util.printf;
 	import gs.util.ObjectUtils;
 	import gs.util.XMLUtils;
@@ -72,6 +73,20 @@ package gs.tracking
 		public var traces:Boolean;
 		
 		/**
+		 * The function name to send the tracking id to
+		 * through external interface. If this is set only
+		 * the tracking id gets sent through EI.
+		 */
+		public var sendTrackingIDToEI:String;
+		
+		/**
+		 * The function name to send the omniture tracking
+		 * object to through external interface. If this is
+		 * set, only the object gets passed through EI.
+		 */
+		public var sendTrackingObjectToEI:String;
+		
+		/**
 		 * Constructor for Omniture instances.
 		 * 
 		 * @param _actionsource The actionsource component.
@@ -102,13 +117,23 @@ package gs.tracking
 		
 		/**
 		 * Sends a tracking call.
-		 * 
+		 *
+		 * @param id The id that will fire. 
 		 * @param node The xml node for omniture.
 		 * @param options Tracking options.
 		 */
-		public function track(node:XML,options:Object):void
+		public function track(id:String,node:XML,options:Object):void
 		{
 			if(!Tracking.assertions(options))return;
+			if(sendTrackingIDToEI)
+			{
+				if(traces)
+				{
+					trace("Sending Tracking ID through External Interface to: ", sendTrackingIDToEI);
+				}
+				ExternalInterface.call(sendTrackingIDToEI,id);
+				return;
+			}
 			var dyd:* =Tracking.getDynamicData(options);
 			clearVars();
 			if(XMLUtils.hasNode(node,"track"))
@@ -117,6 +142,7 @@ package gs.tracking
 				var prop:String;
 				var value:String;
 				var traceobj:Object={};
+				var eiobj:Object={};
 				var printfKey:String;
 				var printfFormat:String;
 				var printfValues:Array;
@@ -125,7 +151,6 @@ package gs.tracking
 					prop=x.name();
 					if(prop=="trackLink")continue;
 					value=x.toString();
-					traceobj[prop]=value;
 					if(XMLUtils.hasAttrib(x,"printfValuesKey"))
 					{
 						printfFormat=value;
@@ -133,8 +158,11 @@ package gs.tracking
 						printfValues=dyd[printfKey];
 						value=printf(printfFormat,printfValues);
 						traceobj[prop]=value;
+						eiobj[prop]=value;
 					}
 					else if(dyd[prop])value+=dyd[prop];
+					traceobj[prop]=value;
+					eiobj[prop]=value;
 					actionsource[prop]=value;
 				}
 				//if(!actionsource.pageName) trace("WARNING: The pageName propery wasn't set on the actionsource. Not firing track().");
@@ -145,6 +173,15 @@ package gs.tracking
 						trace("--track()--");
 						ObjectUtils.dump(traceobj);
 						trace("-----------");
+					}
+					if(sendTrackingObjectToEI)
+					{
+						if(traces)
+						{
+							trace("Sending Tracking Object through External Interface to: ", sendTrackingObjectToEI);
+						}
+						ExternalInterface.call(sendTrackingObjectToEI,eiobj);
+						return;
 					}
 					actionsource.track();
 				}
@@ -168,7 +205,6 @@ package gs.tracking
 						url=printf(printfFormat,printfValues);
 					}
 					else url=XMLUtils.walkForValue(n,"trackLink.url");
-					
 					if(XMLUtils.hasAttrib(typeNode,"printfValuesKey"))
 					{
 						printfKey=typeNode.@printfValuesKey;
@@ -177,7 +213,6 @@ package gs.tracking
 						type=printf(printfFormat,printfValues);
 					}
 					else type=XMLUtils.walkForValue(n,"trackLink.type");
-					
 					if(XMLUtils.hasAttrib(nameNode,"printfValuesKey"))
 					{
 						printfKey=nameNode.@printfValuesKey;
@@ -186,7 +221,6 @@ package gs.tracking
 						name=printf(printfFormat,printfValues);
 					}
 					else name=XMLUtils.walkForValue(n,"trackLink.name");
-					
 					if(!url||url=="")url=null;
 					if(!type)type="o";
 					if(traces) trace("--trackLink(" + ((url)?url:name) + "," + type + "," + name + ")--");
