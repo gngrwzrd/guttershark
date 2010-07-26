@@ -52,7 +52,7 @@ package
 		
 		private function onButton1Click(e:Event):void
 		{
-			track.track("trackTest1");
+			//track.track("trackTest1");
 		}
 	}
 }

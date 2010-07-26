@@ -3,14 +3,6 @@
 	<track id="trackTest1">
 		<omniture>
 			<track>
-				<!--
-				By listing properties only it triggers the "track"
-				method on actionsource to be called.
-				
-				You can define any property / value here. The tracking
-				class enumerates all nodes and defines them on the
-				actionsource component before firing.
-				-->
 				<pageName>test</pageName>
 				<prop6>test2</prop6>
 				<eVar4>hello</eVar4>
