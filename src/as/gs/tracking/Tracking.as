@@ -188,10 +188,10 @@ package gs.tracking
 				trace("WARNING: A track node with id {"+id+"} wasn't found. Not doing anything.");
 				return;
 			}
-			if(XMLUtils.hasNode(node,"webtrends") && webtrends) webtrends.track(new XML(node.webtrends),options);
-			if(XMLUtils.hasNode(node,"hitbox") && hitbox) hitbox.track(new XML(node.hitbox),options);
-			if(XMLUtils.hasNode(node,"omniture") && omniture) omniture.track(new XML(node.omniture),options);
-			if(XMLUtils.hasNode(node,"atlas") && atlas) atlas.track(new XML(node.atlas),options);
+			if(XMLUtils.hasNode(node,"webtrends") && webtrends) webtrends.track(nid,new XML(node.webtrends),options);
+			if(XMLUtils.hasNode(node,"hitbox") && hitbox) hitbox.track(nid,new XML(node.hitbox),options);
+			if(XMLUtils.hasNode(node,"omniture") && omniture) omniture.track(nid,new XML(node.omniture),options);
+			if(XMLUtils.hasNode(node,"atlas") && atlas) atlas.track(nid,new XML(node.atlas),options);
 			//if(XMLUtils.hasAttrib(node,"ganalytics") && hitbox) hitbox.track(node,options);
 		}
 		
