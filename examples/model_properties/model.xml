@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model>
+	<!--
+	cast types (case insensitive):
+	[uint]
+	[int],[integer]
+	[num],[number]
+	[str],[string]
+	[bool],[boolean]
+	-->
+	<properties>
+		<clip x="[int]10" y="[int]10" alpha="[number]1">
+			<clip2 x="[int]0" y="[int]0" alpha="[number]1" />
+			<clip3 x="[int]200" y="[int]0" alpha="[number].5" visible="[bool]false" />
+		</clip>
+	</properties>
+</model>
