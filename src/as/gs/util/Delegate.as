@@ -2,13 +2,18 @@ package gs.util
 {
 
 	/**
-	 * Delegate.
+	 * The Delegate class creates closures for callbacks.
+	 * 
+	 * <p>
+	 * <b>Credits:</b><br/>
+	 * <a href="http://mbtrueman.com/">Michael Trueman</a>
+	 * </p>
 	 */
 	public class Delegate
 	{
 		
 		/**
-		 * Create's a closure.
+		 * Creates a closure.
 		 * 
 		 * @param handler The function callback.
 		 * @param args any arguments to pass to the handler.
