@@ -246,6 +246,12 @@ package gs.model
 		private var onComplete:Function;
 		
 		/**
+		 * Cast type matcher for applying properties on
+		 * object chains.
+		 */
+		private var castMatch:RegExp = /^\[([a-zA-Z]*)\](.*)/;
+		
+		/**
 		 * Model lookup.
 		 */
 		private static var _models:Dictionary = new Dictionary(true);
@@ -1073,6 +1079,77 @@ package gs.model
 			if(node.hasOwnProperty("@timeout"))timeout=int(node.@timeout);
 			if(node.hasOwnProperty("@retries"))retries=int(node.@retries);
 			return new SoapService(wsdl,timeout,retries);
+		}
+		
+		/**
+		 * Apply a hierarchy of property values to an object. The
+		 * xml should be a reference to the root node that corresponds
+		 * to the object provided, it recurses down the xml in parallel
+		 * with the object chain and sets property values.
+		 * 
+		 * @param obj The root object.
+		 * @param xml The root xml.
+		 */
+		public function applyProperties(obj:*,xml:*):void
+		{
+			var n:*;
+			var children:*;
+			var attr:*;
+			var attrs:*;
+			var prop:String;
+			var value:String;
+			var match:Array = null;
+			var cast:String = null;
+			if(xml.children().length() > 0) //recurse first
+			{
+				children=xml.children();
+				for each(n in children)
+				{
+					prop=n.name();
+					if(!(prop in obj)) continue;
+					applyProperties(obj[prop],n);
+				}
+			}
+			if(xml.attributes().length() > 0) //apply attributes
+			{
+				attrs=xml.attributes();
+				for each(attr in attrs)
+				{
+					prop=attr.name();
+					value=attr.toString();
+					match=value.match(castMatch);
+					if(match && match.length > 1)
+					{
+						cast=match[1].toLowerCase();
+						value=match[2];
+					}
+					switch(cast)
+					{
+						case "bool":
+						case "boolean":
+							if(value=="1" || value=="yes" || value=="true") obj[prop] = true;
+							if(value=="0" || value=="no" || value=="false") obj[prop] = false;
+							break;
+						case "int":
+						case "integer":
+							obj[prop]=int(match[2]);
+							break;
+						case "uint":
+							obj[prop]=uint(match[2]);
+							break;
+						case "num":
+						case "number":
+							obj[prop]=Number(match[2]);
+							break;
+						case "string":
+						case "str":
+						case null:
+						default:
+							obj[prop]=value.toString();
+							break;
+					}
+				}
+			}
 		}
 		
 		/**
