@@ -119,19 +119,11 @@ package gs.model
 	 *    &lt;/textformats&gt;
 	 *    
 	 *    &lt;properties&gt;
-	 *        &lt;propset id="test"&gt;
-	 *            &lt;textFormat id="theTextFormat" /&gt;
-	 *            &lt;alpha&gt;0.5&lt;/alpha&gt;
-	 *            &lt;xywh x="20" y="+30" width="+100" height="100" /&gt; &lt;!-- optional node for x/y/w/h --&gt;
-	 *            &lt;y&gt;+30&lt;/y&gt;
-	 *            &lt;width&gt;400&lt;/width&gt;
-	 *            &lt;alpha&gt;+.4&lt;/alpha&gt;
-	 *        &lt;/propset&gt;
-	 *        &lt;propset id="tfieldTest"&gt;
-	 *            &lt;styleSheet id="colors3" /&gt;
-	 *            &lt;htmlText&gt;&lt;![CDATA[&lt;p&gt;&lt;span class="pink"&gt;hello&lt;/span&gt; &lt;span class="some"&gt;w&lt;/span&gt;orld&lt;/p&gt;]]&gt;&lt;/htmlText&gt;
-	 *            &lt;htmlText id="sparsley"/&gt; &lt;!-- optionally you can target a content/text node from the model, but not both. --&gt;
-	 *        &lt;/propset&gt;
+	 *        &lt;-- See examples/model_properties for more information on cast types. --&gt;
+	 *        &lt;clip x="[int]10" y="[int]10" alpha="[number]1"&gt;
+	 *            &lt;clip2 x="[int]0" y="[int]0" alpha="[number]1" /&gt;
+	 *            &lt;clip3 x="[int]200" y="[int]0" alpha="[number].5" visible="[bool]false" /&gt;
+	 *        &lt;/clip&gt;
 	 *    &lt;/properties&gt;
 	 * &lt;/model&gt;
 	 * </listing>
@@ -195,12 +187,6 @@ package gs.model
 		 * Stores a reference to the <code>&lt;textformats&gt;&lt;/textformats&gt;</code>
 		 */
 		public var textformats:XMLList;
-		
-		/**
-		 * Stores a reference to the <code>&lt;properties&gt;&lt;/properties&gt;</code>
-		 * node in the model xml.
-		 */
-		public var properties:XMLList;
 		
 		/**
 		 * Stores a reference to the <code>&lt;fonts&gt;&lt/fonts&gt;</code>
@@ -326,7 +312,6 @@ package gs.model
 			if(_model.stylesheets)stylesheets=_model.stylesheets;
 			if(_model.service)services=_model.services;
 			if(_model.textformats)textformats=_model.textformats;
-			if(_model.properties)properties=_model.properties;
 			if(_model.fonts)fonts=_model.fonts;
 			if(_model.security)security=_model.security;
 			if(_model.textAttributes)textAttributes=_model.textAttributes;
