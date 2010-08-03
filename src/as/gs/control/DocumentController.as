@@ -59,6 +59,19 @@ package gs.control
 		}
 		
 		/**
+		 * A hook you can use to tell the document controller
+		 * to grab the flashvars object from the FlashvarUtils
+		 * class as an "injected flashvar".
+		 * 
+		 * <p>Look at the docs for initFlashvars for how the
+		 * injectedFlashvarsKey is used to get custom flashvars.</p>
+		 */
+		protected function injectedFlashvarsKey():String
+		{
+			return null;
+		}
+		
+		/**
 		 * Returns an object for standalone flashvars.
 		 * 
 		 * @example
@@ -97,13 +110,15 @@ package gs.control
 		 * <listing>	
 		 * protected function initFlashvars():void
 		 * {
-		 *     flashvars=FlashvarUtils.getFlashvars(this,flashvarsForStandalone);
+		 *     if(injectedFlashvarsKey()) flashvars = FlashvarUtils.get(injectedFlashvarsKey());
+		 *     if(!flashvars)flashvars=FlashvarUtils.getFlashvars(this,flashvarsForStandalone);
 		 * }
 		 * </listing>
 		 */
 		protected function initFlashvars():void
 		{
-			flashvars=FlashvarUtils.getFlashvars(this,flashvarsForStandalone);
+			if(injectedFlashvarsKey())flashvars=FlashvarUtils.get(injectedFlashvarsKey());
+			if(!flashvars)flashvars=FlashvarUtils.getFlashvars(this,flashvarsForStandalone);
 		}
 		
 		/**
