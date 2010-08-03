@@ -222,7 +222,7 @@ package gs.control
 		 * protected function registerInstances():void
 		 * {
 		 *      if(model)Model.set("main",model);
-		 *      if(flashvars)Flashvars.set("main",flashvars);
+		 *      if(flashvars)FlashvarUtils.set("main",flashvars);
 		 *      Document.set("main",this);
 		 * }
 		 * </listing>
