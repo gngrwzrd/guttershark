@@ -20,7 +20,7 @@ package gs.preloading
 	 * 
 	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 * 
-	 * @see gs.core.Preloader
+	 * @see gs.preloading.Preloader
 	 * @see gs.managers.AssetManager
 	 */
 	final public class Asset
