@@ -160,6 +160,7 @@ package gs.control
 		 */
 		private function onFlashvarError(e:AssetErrorEvent):void
 		{
+			loadingFlashvars=false;
 			trace("WARNING: onFlashvarError() occured. Could not load flashvars from url.");
 			initModel();
 			initPaths();
