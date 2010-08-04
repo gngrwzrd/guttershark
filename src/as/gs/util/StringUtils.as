@@ -28,7 +28,7 @@ package gs.util
 		 * 
 		 * @param str The http URL string to encode. 
 		 */
-		public function encodeURI2(str:String):String
+		public static function encodeURI2(str:String):String
 		{
 			var raw:String = unescape(str);
 			var i:int = (raw.indexOf("?") > -1) ? raw.indexOf("?")+1 : -1;
