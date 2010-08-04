@@ -1,10 +1,14 @@
 package gs.control
 {
+	import gs.events.AssetErrorEvent;
 	import gs.managers.AssetManager;
 	import gs.model.Model;
+	import gs.preloading.Asset;
 	import gs.preloading.Preloader;
 	import gs.util.FlashvarUtils;
+	import gs.util.QueryString;
 	import gs.util.StageRef;
+	import gs.util.StringUtils;
 	import gs.util.Strings;
 
 	import flash.events.Event;
@@ -37,6 +41,14 @@ package gs.control
 		protected var preloader:Preloader;
 		
 		/**
+		 * Whether or not the flashvars are being
+		 * loaded from a url.
+		 */
+		private var loadingFlashvars:Boolean;
+		
+		private var qs:QueryString;
+		
+		/**
 		 * Constructor for DocumentController instances.
 		 * 
 		 * @example
@@ -52,8 +64,11 @@ package gs.control
 		 */
 		public function DocumentController()
 		{
+			qs=new QueryString();
+			loadingFlashvars=false;
 			initStage();
 			initFlashvars();
+			if(loadingFlashvars) return;
 			initModel();
 			initPaths();
 		}
@@ -110,17 +125,57 @@ package gs.control
 		 * <listing>	
 		 * protected function initFlashvars():void
 		 * {
-		 *     if(injectedFlashvarsKey()) flashvars = FlashvarUtils.get(injectedFlashvarsKey());
+		 *     if(injectedFlashvarsKey()) flashvars=FlashvarUtils.get(injectedFlashvarsKey());
 		 *     if(!flashvars)flashvars=FlashvarUtils.getFlashvars(this,flashvarsForStandalone);
 		 * }
 		 * </listing>
 		 */
 		protected function initFlashvars():void
 		{
-			if(injectedFlashvarsKey())flashvars=FlashvarUtils.get(injectedFlashvarsKey());
-			if(!flashvars)flashvars=FlashvarUtils.getFlashvars(this,flashvarsForStandalone);
+			if(qs.flashvarsurl)loadFlashvars();
+			else
+			{
+				if(injectedFlashvarsKey())flashvars=FlashvarUtils.get(injectedFlashvarsKey());
+				if(!flashvars)flashvars=FlashvarUtils.getFlashvars(this,flashvarsForStandalone);
+			}
 		}
 		
+		/**
+		 * Loads flashvars when a querystring variable is available.
+		 */
+		private function loadFlashvars():void
+		{
+			loadingFlashvars=true;
+			var u:String = StringUtils.encodeURI2(qs.flashvarsurl);
+			var flv:Asset=new Asset(u,"flashvars","json");
+			preloader=new Preloader();
+			preloader.addItems([flv]);
+			preloader.addEventListener(Event.COMPLETE,onFlashvarsLoaded);
+			preloader.addEventListener(AssetErrorEvent.ERROR,onFlashvarError);
+			preloader.start();
+		}
+		
+		/**
+		 * When the flashvar url fails to load.
+		 */
+		private function onFlashvarError(e:AssetErrorEvent):void
+		{
+			trace("WARNING: onFlashvarError() occured. Could not load flashvars from url.");
+			initModel();
+			initPaths();
+		}
+		
+		/**
+		 * After the flashvars have loaded from a URL.
+		 */
+		private function onFlashvarsLoaded(e:Event):void
+		{
+			loadingFlashvars=false;
+			flashvars=AssetManager.getJSON("flashvars");
+			initModel();
+			initPaths();
+		}
+
 		/**
 		 * Initialize paths with the model.
 		 * 
@@ -170,6 +225,7 @@ package gs.control
 		 */
 		protected function initModel():void
 		{
+			if(loadingFlashvars)return;
 			model=new Model();
 			if(flashvars.model)model.load(flashvars.model,onModelReady,onModelIOError,onModelSecurityError);
 			else onModelReady();
@@ -196,12 +252,18 @@ package gs.control
 		/**
 		 * A hook you can override to catch io loading errors for the model.
 		 */
-		protected function onModelIOError():void{}
+		protected function onModelIOError():void
+		{
+			trace("WARNING: onModelIOError() occured but it's not overridden.");
+		}
 		
 		/**
 		 * A hook you can override to catch security errors for the model.
 		 */
-		protected function onModelSecurityError():void{}
+		protected function onModelSecurityError():void
+		{
+			trace("WARNING: onModelSecurityError() occured but it's not overridden.");
+		}
 		
 		/**
 		 * A hook to start preloading.
