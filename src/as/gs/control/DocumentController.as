@@ -46,6 +46,9 @@ package gs.control
 		 */
 		private var loadingFlashvars:Boolean;
 		
+		/**
+		 * Used to read querystring for flashvarsurl.
+		 */
 		private var qs:QueryString;
 		
 		/**
@@ -125,8 +128,12 @@ package gs.control
 		 * <listing>	
 		 * protected function initFlashvars():void
 		 * {
-		 *     if(injectedFlashvarsKey()) flashvars=FlashvarUtils.get(injectedFlashvarsKey());
-		 *     if(!flashvars)flashvars=FlashvarUtils.getFlashvars(this,flashvarsForStandalone);
+		 *     if(qs.flashvarsurl)loadFlashvars();
+		 *     else
+		 *     {
+		 *         if(injectedFlashvarsKey())flashvars=FlashvarUtils.get(injectedFlashvarsKey());
+		 *         if(!flashvars)flashvars=FlashvarUtils.getFlashvars(this,flashvarsForStandalone);
+		 *     }
 		 * }
 		 * </listing>
 		 */
@@ -146,7 +153,7 @@ package gs.control
 		private function loadFlashvars():void
 		{
 			loadingFlashvars=true;
-			var u:String = StringUtils.encodeURI2(qs.flashvarsurl);
+			var u:String=StringUtils.encodeURI2(qs.flashvarsurl);
 			var flv:Asset=new Asset(u,"flashvars","json");
 			preloader=new Preloader();
 			preloader.addItems([flv]);
@@ -160,6 +167,8 @@ package gs.control
 		 */
 		private function onFlashvarError(e:AssetErrorEvent):void
 		{
+			preloader.dispose();
+			preloader=null;
 			loadingFlashvars=false;
 			trace("WARNING: onFlashvarError() occured. Could not load flashvars from url.");
 			initModel();
@@ -173,6 +182,8 @@ package gs.control
 		{
 			loadingFlashvars=false;
 			flashvars=AssetManager.getJSON("flashvars");
+			preloader.dispose();
+			preloader=null;
 			initModel();
 			initPaths();
 		}
