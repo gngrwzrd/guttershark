@@ -389,19 +389,6 @@ package gs.util
 		}
 		
 		/**
-		 * Share to technorati.
-		 * 
-		 * @param url The url to share.
-		 * @param window The window for the url.
-		 */
-		public static function technorati(url:String,window:String="_blank"):void
-		{
-			if(!url)return;
-			NavigateToURL.navToURL(new URLRequest('http://www.technorati.com/faves/loginName?add='+escape(url)),window);
-			//navigateToURL(new URLRequest('http://www.technorati.com/faves/loginName?add='+escape(url)),window);
-		}
-		
-		/**
 		 * Share to mr. wong.
 		 * 
 		 * @param url The url to share.
