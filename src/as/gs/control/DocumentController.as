@@ -90,6 +90,40 @@ package gs.control
 		}
 		
 		/**
+		 * A hook you can use to override what key is used
+		 * when the model is registered with Model.set.
+		 * 
+		 * <p>The default is <strong>main</strong></p>
+		 */
+		protected function registerModelKey():String
+		{
+			return "main";
+		}
+		
+		/**
+		 * A hook you can use to override what key is used
+		 * when the flashvars object is register with FlashvarUtils.set.
+		 * 
+		 * <p>The default is <strong>main</strong></p>
+		 */
+		protected function registerFlashvarsKey():String
+		{
+			return "main";
+		}
+		
+		/**
+		 * A hook you can use to override what key is used
+		 * when the DocumentController is registered with
+		 * Document.set.
+		 * 
+		 * <p>The default is <strong>main</strong></p>
+		 */
+		protected function registerDocumentKey():String
+		{
+			return "main";
+		}
+		
+		/**
 		 * Returns an object for standalone flashvars.
 		 * 
 		 * @example
@@ -318,9 +352,9 @@ package gs.control
 		 */
 		protected function registerInstances():void
 		{
-			if(model)Model.set("main",model);
-			if(flashvars)FlashvarUtils.set("main",flashvars);
-			Document.set("main",this);
+			if(model)Model.set(registerModelKey(),model);
+			if(flashvars)FlashvarUtils.set(registerFlashvarsKey(),flashvars);
+			Document.set(registerDocumentKey(),this);
 		}
 		
 		/**
