@@ -75,6 +75,26 @@ ${ASDOC}asdoc \
 -exclude-classes com.greensock.easing.Quad \
 -exclude-classes com.adobe.crypto.MD5 \
 -exclude-classes com.adobe.utils.IntUtil \
+-exclude-classes gs.audio.AudioTimeline \
+-exclude-classes gs.audio.AudioTimelineAction \
+-exclude-classes gs.display.VimeoVolume \
+-exclude-classes gs.display.VolumeSlider \
+-exclude-classes gs.display.button.ClipButton \
+-exclude-classes gs.display.button.IButton \
+-exclude-classes gs.display.button.GSButton \
+-exclude-classes gs.display.button.MutexButtons \
+-exclude-classes gs.display.button.PushButton \
+-exclude-classes gs.display.button.RoundRectButton \
+-exclude-classes gs.display.accordion.Accordion \
+-exclude-classes gs.display.accordion.BaseAccordionLabelBar \
+-exclude-classes gs.display.accordion.BaseAccordionPane \
+-exclude-classes gs.display.decorators.HighlightableSprite \
+-exclude-classes gs.display.tabbar.TabBar \
+-exclude-classes gs.display.tabbar.ITabButton \
+-exclude-classes gs.display.tabbar.ITabView \
+-exclude-classes gs.display.tabbar.BaseTabButton \
+-exclude-classes gs.display.tabbar.BaseTabView \
+-exclude-classes gs.display.tooltip.BaseToolTip \
 -exclude-classes gs.display.Carousel \
 -exclude-classes gs.display.carousel.Carousel \
 -exclude-classes gs.display.DropDown \
@@ -95,6 +115,33 @@ ${ASDOC}asdoc \
 -exclude-classes gs.display.ScrollContainer \
 -exclude-classes gs.display.video.FLVPlayer \
 -exclude-classes gs.util.fileref.Downloader \
+-exclude-classes gs.display.View.BaseView \
+-exclude-classes gs.display.View.BaseErrorView \
+-exclude-classes gs.display.View.BaseFormView \
+-exclude-classes gs.util.bindings.BindableObject \
+-exclude-classes gs.util.bindings.BindingUtils \
+-exclude-classes gs.util.bindings.ChangeWatcher \
+-exclude-classes gs.util.bindings.ObjectProxy \
+-exclude-classes gs.util.bindings.PropertyChangeEvent \
+-exclude-classes gs.managers.ToolTipManager \
+-exclude-classes gs.rtmp.conference.Conference \
+-exclude-classes gs.rtmp.conference.ConferenceUser \
+-exclude-classes gs.rtmp.conference.ConferenceEvent \
+-exclude-classes gs.rtmp.conference.ConferenceRoom \
+-exclude-classes gs.rtmp.conference.ConferenceRSOClient \
+-exclude-classes gs.rtmp.conference.User \
+-exclude-classes gs.rtmp.core.ConnectorEvent \
+-exclude-classes gs.rtmp.core.NCConnector \
+-exclude-classes gs.rtmp.core.RTMPClient \
+-exclude-classes gs.rtmp.core.RTMPConnections \
+-exclude-classes gs.rtmp.core.RTMPConnector \
+-exclude-classes gs.rtmp.core.RTMPEvent \
+-exclude-classes gs.rtmp.core.RTMPObject \
+-exclude-classes gs.rtmp.core.RTMPPublisher \
+-exclude-classes gs.rtmp.core.RTMPSubscriber \
+-exclude-classes gs.rtmp.rso.RemoteSharedObject \
+-exclude-classes gs.rtmp.rso.RemoteSharedObjectClient \
+-exclude-classes gs.rtmp.rso.RSOEvent \
 -exclude-classes com.asual.swfaddress.SWFAddress \
 -exclude-classes com.asual.swfaddress.SWFAddressEvent \
 -exclude-classes fl.video.SeekBarAccImpl \
@@ -215,4 +262,5 @@ ${ASDOC}asdoc \
 -package gs.util.collections "The gs.util.collections package contains utility collections." \
 -package gs.util.filters "The gs.util.filters package contains utility classes that simplify working with filters." \
 -package gs.util.fileref "The gs.util.fileref package contains utility classes for working with FileReference and FileReferenceList." \
--package gs.util.geom "The gs.util.geom package contains classes that define basic geometry."
+-package gs.util.geom "The gs.util.geom package contains classes that define basic geometry." \
+-package gs.util.text "The gs.util.geom package contains utility classes for text."
