@@ -344,9 +344,9 @@ package gs.control
 		 * <listing>	
 		 * protected function registerInstances():void
 		 * {
-		 *      if(model)Model.set("main",model);
-		 *      if(flashvars)FlashvarUtils.set("main",flashvars);
-		 *      Document.set("main",this);
+		 *      if(model)Model.set(registerModelKey(),model);
+		 *      if(flashvars)FlashvarUtils.set(registerFlashvarsKey(),flashvars);
+		 *      Document.set(registerDocumentKey(),this);
 		 * }
 		 * </listing>
 		 */
