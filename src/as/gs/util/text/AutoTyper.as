@@ -6,7 +6,7 @@ package gs.util.text
 
 	/**
 	 * The AutoTyper class will auto type some
-	 * text into a text field at delayed times.
+	 * text into a text field at scheduled intervals.
 	 */
 	public class AutoTyper 
 	{
