@@ -85,9 +85,6 @@ ${ASDOC}asdoc \
 -exclude-classes gs.display.button.MutexButtons \
 -exclude-classes gs.display.button.PushButton \
 -exclude-classes gs.display.button.RoundRectButton \
--exclude-classes gs.display.accordion.Accordion \
--exclude-classes gs.display.accordion.BaseAccordionLabelBar \
--exclude-classes gs.display.accordion.BaseAccordionPane \
 -exclude-classes gs.display.decorators.HighlightableSprite \
 -exclude-classes gs.display.tabbar.TabBar \
 -exclude-classes gs.display.tabbar.ITabButton \
