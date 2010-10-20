@@ -1,8 +1,8 @@
 asfiles=File.join("./src/as/**","*.as")
 d=Dir.glob(asfiles)
-final_out="~/Development/lib/flex3sdk/bin/compc "
-final_out << "-sp ~/Development/git/guttershark/src/as/ "
-final_out << "-sp ~/Development/lib/actionscript/externals/ "
+final_out="/Development/local/elib/flex3sdk/bin/compc "
+final_out << "-sp /Development/local/scm/git/guttershark/src/as/ "
+final_out << "-sp /Development/elib/actionscript/ "
 if File.directory?('/Applications/Adobe Flash CS4/Common/Configuration/ActionScript 3.0/FP10/playerglobal.swc')
   final_out << "-external-library-path '/Applications/Adobe Flash CS4/Common/Configuration/ActionScript 3.0/FP10/playerglobal.swc' "
 end
