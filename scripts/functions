@@ -1,0 +1,8 @@
+#!/bin/bash
+ME=`whoami`
+DEVPATH=`devpath`
+GS="${DEVPATH}/local/scm/git/guttershark"
+GS_SCRIPTS="/${GS}/scripts"
+AS_LIBS="${DEVPATH}/elib/actionscript"
+ASDOC="${DEVPATH}/local/elib/flex3sdk/bin/asdoc"
+COMPC="${DEVPATH}/local/elib/flex3sdk/bin/compc"

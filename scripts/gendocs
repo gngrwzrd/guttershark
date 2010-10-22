@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-ME=`whoami`
-ASDOC="/Users/${ME}/Development/lib/flex3sdk/bin/"
-AS_PATH="/Users/${ME}/Development/lib/actionscript/"
+. ./scripts/functions
+SOURCE_PATH="-source-path ./src/as -source-path ${AS_LIBS}"
 if [ -d "/Applications/Adobe Flash CS4/Common/Configuration/Component Source/ActionScript 3.0/User Interface" ]; then
 	PATH1="/Applications/Adobe Flash CS4/Common/Configuration/Component Source/ActionScript 3.0/User Interface"
 fi
@@ -21,9 +20,8 @@ if [ -d "/Applications/Adobe CS4/Adobe Flash CS4/Common/Configuration/ActionScri
 	PATH3="/Applications/Adobe CS4/Adobe Flash CS4/Common/Configuration/ActionScript 3.0/projects/Flash/src"
 fi
 rm -rf ./docs/*
-${ASDOC}asdoc \
--source-path ./src/as/ \
--source-path ${AS_PATH}/externals/ \
+${ASDOC} \
+${SOURCE_PATH} \
 -source-path "${PATH1}" \
 -source-path "${PATH2}" \
 -source-path "${PATH3}" \

@@ -1,5 +1,6 @@
 package gs.util
 {
+	import flash.text.TextField;
 	
 	/**
 	 * The StringUtils class contains utility methods for strings.
@@ -15,6 +16,107 @@ package gs.util
 		private static const DEFAULT_ENCODE_CHARACTER:String='*';
 		private static const MINIMUM_CARD_LENGTH:int=13;
 		private static const MAXIMUM_CARD_LENGTH:int=16;
+		
+		/**
+		 * Truncates a normal textfield to n lines.
+		 * 
+		 * @param txt The text to truncate.
+		 * @param tf The textfield the text will be applied to.
+		 * @param numLines The number of lunes to allow.
+		 * @param trail The string to append to the truncated output.
+		 */
+		public function truncateText(txt:String, tf:TextField, numLines:uint, trail:String = "..."):String
+		{
+			var newText:String=txt;
+			var index:int;
+			tf.text=txt;
+			tf.autoSize="left";
+			while(tf.numLines > numLines)
+			{
+				tf.text=newText;
+				tf.autoSize="left";
+				index=newText.lastIndexOf(" ");
+				newText=txt.substr(0, index)+trail;
+			}
+			return tf.text;
+		}
+		
+		/**
+		 * Truncates an HTML text field to n lines.
+		 * 
+		 * @param htmlText The html text to truncate.
+		 * @param tf The textfield the html text will be applied to.
+		 * @param numLines The number of lines to allow.
+		 * @param trail The string to append to the truncated output.
+		 */
+		public static function truncateHTMLText(htmlText:String,tf:TextField,numLines:int, trail:String="..."):String
+		{
+			tf.htmlText = htmlText;
+			tf.autoSize = "left";
+			var index:int = htmlText.length;
+			var nextIndex:int;
+			var i:int;
+			var endIndex:int;
+			var closeTags:Array = [];
+			var closeMatch:Array;
+			var markedSpace:Boolean;
+			var currentChar:String;
+			var nextChar:String;
+			var output:String = "";
+			var tagname:String = "";
+			var cltagname:String = "";
+			var tag:String = "";
+			var openReg1:RegExp = /\<([a-zA-Z0-9]*) ?(.*)\>/; //<p>
+			var openReg2:RegExp = /\<([a-zA-Z0-9]*) ?(.*)\/ ?\>/; //<br/>
+			var closeReg:RegExp = /\<\/ ?([a-zA-Z0-9]*) ?\>/; //</p>
+			while(tf.numLines > numLines)
+			{
+				markedSpace=false;
+				while(!markedSpace) 
+				{
+					currentChar=htmlText.charAt(index);
+					nextIndex=index+1;
+					nextChar=htmlText.charAt(nextIndex);
+					switch(currentChar)
+					{
+						case "<":
+							if(nextChar == "/") //closing tag
+							{
+								endIndex = htmlText.indexOf(">",index);
+								closeTags.unshift(htmlText.substr(index,endIndex-nextIndex));
+								break;
+							}
+							else
+							{
+								var ei:int = htmlText.indexOf(">",index);
+								var sub:String = htmlText.substr(index,ei-index +1);
+								var openMatch1:Array = sub.match(openReg1);
+								var openMatch2:Array = sub.match(openReg2);
+								if(openMatch2) tagname = openMatch2[1]; //<br/>
+								else tagname = openMatch1[1]; //<p>
+								for(i=0; i<closeTags.length; i++)
+								{
+									tag=closeTags[i];
+									closeMatch=tag.match(closeReg);
+									if(closeMatch) {
+										cltagname = closeMatch[1];
+										if(tagname == cltagname) closeTags.splice(i,1);
+									}
+								}
+							}
+						case " ":
+							markedSpace = true;
+							break;
+					}
+					index--;
+					output=htmlText.substr(0,index)+trail;
+					for(i=0; i<closeTags.length;i++) output+=closeTags[i];
+					tf.htmlText = output;
+					tf.autoSize = "left";
+				}
+			}
+			return output;
+		}
 		
 		/**
 		 * Unescapes and re-encodes a URI. This is specifically for when
