@@ -145,7 +145,7 @@ package gs.display.xmlview
 			if(vln)
 			{
 				var klass:Class;
-				if(inswf) AssetManager.getClassFromSWFLibrary(inswf,vln);
+				if(inswf) klass=AssetManager.getClassFromSWFLibrary(inswf,vln);
 				else klass=AssetManager.getClass(vln);
 				xv=new klass();
 				if(!(xv is IXMLView)) throw new Error("The class instantiated from XML does not implement IXView.");
