@@ -12,7 +12,7 @@ package gs.util
 	 * 
 	 * @example Using the FramePulse class:
 	 * <listing>	
-	 * FramePulse.AddEnterFrameEvenListener(onEnterFrame);
+	 * FramePulse.AddEnterFrameListener(onEnterFrame);
 	 * private function onEnterFrame(e:Event):void
 	 * {
 	 *     trace("on enter frame");
