@@ -1,6 +1,6 @@
 package gs.display.xmlview
-{
-	import gs.display.GSClip;
+{	
+	import gs.display.GSSprite;
 
 	/**
 	 * The XMLView class is an adapter that implements
@@ -10,7 +10,7 @@ package gs.display.xmlview
 	 * 
 	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
-	dynamic public class XMLView extends GSClip implements IXMLView
+	dynamic public class XMLView extends GSSprite implements IXMLView
 	{
 		
 		/**

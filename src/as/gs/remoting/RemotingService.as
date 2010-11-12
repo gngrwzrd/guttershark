@@ -124,6 +124,7 @@ package gs.remoting
 		 * <li>arguments (Array) - The arguments for the remoting call (same as 'args').</li>
 		 * <li>timeout (int) - The time to allow each call.</li>
 		 * <li>retries (int) - The number of retries to allow.</li>
+		 * <li>returnArgs (Boolean) - Return args to remoting call result</li>
 		 * <li>onResult (Function) - The on result callback.</li>
 		 * <li>onFault (Function) - The on fault callback.</li>
 		 * <li>onTimeout (Function) - The on timeout callback.</li>
@@ -137,7 +138,6 @@ package gs.remoting
 		 * </ul>
 		 * 
 		 * @param method The method to call.
-		 * @param args The method arguments.
 		 * @param callProps The call properties used for the remoting call.
 		 */
 		public function send(method:String,callProps:Object):RemotingCall
@@ -147,6 +147,7 @@ package gs.remoting
 			var rc:RemotingCall=new RemotingCall(gateway,endpoint,method,objectEncoding,time,retry,callProps.resultHandler);
 			rc.setCredentials(user,pass);
 			rc.setCallbacks(callProps);
+			if(callProps.returnArgs != null) rc.returnArgs = callProps.returnArgs;
 			if(!callProps.args && !callProps.arguments)callProps.args=[];
 			rc.send(callProps.args||callProps.arguments);
 			return rc;
