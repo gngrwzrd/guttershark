@@ -125,6 +125,7 @@ package gs.remoting
 		 * <li>timeout (int) - The time to allow each call.</li>
 		 * <li>retries (int) - The number of retries to allow.</li>
 		 * <li>returnArgs (Boolean) - Return args to remoting call result</li>
+		 * <li>clearListenersOnSuccess (Boolean) - Clears RemotingCall netconnection's listeners on successful returns.</li>
 		 * <li>onResult (Function) - The on result callback.</li>
 		 * <li>onFault (Function) - The on fault callback.</li>
 		 * <li>onTimeout (Function) - The on timeout callback.</li>
@@ -141,13 +142,14 @@ package gs.remoting
 		 * @param callProps The call properties used for the remoting call.
 		 */
 		public function send(method:String,callProps:Object):RemotingCall
-		{
+		{			
 			var time:int=callProps.timeout||timeout;
 			var retry:int=callProps.retries||retries;
 			var rc:RemotingCall=new RemotingCall(gateway,endpoint,method,objectEncoding,time,retry,callProps.resultHandler);
 			rc.setCredentials(user,pass);
 			rc.setCallbacks(callProps);
-			if(callProps.returnArgs != null) rc.returnArgs = callProps.returnArgs;
+			if (callProps.returnArgs != null) rc.returnArgs = callProps.returnArgs;
+			if (callProps.clearListenersOnSuccess != null) rc.clearListenersOnSuccess = callProps.clearListenersOnSuccess;
 			if(!callProps.args && !callProps.arguments)callProps.args=[];
 			rc.send(callProps.args||callProps.arguments);
 			return rc;
