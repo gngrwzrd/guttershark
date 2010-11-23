@@ -35,7 +35,7 @@ package gs.remoting
 		 * @private
 		 * id for this call.
 		 */
-		public var id:String;
+		private var id:String;
 		
 		/**
 		 * On result callback.
@@ -140,6 +140,11 @@ package gs.remoting
 		 */
 		public var returnArgs:Boolean;
 		
+		/*
+		 * Clear listeners on successful return
+		 */
+		public var clearListenersOnSuccess:Boolean;		
+		 
 		/**
 		 * The handler class that processes the returned result - this
 		 * should be an instance or subclass of RemotingCallResultHandler.
@@ -495,7 +500,15 @@ package gs.remoting
 			else if(res is RemotingCallResult)
 			{
 				if(onResult==null)return;
-				(returnArgs && args && args.length > 0) ? onResult(res,args) : onResult(res);
+				(returnArgs && args && args.length > 0) ? onResult(res, args) : onResult(res);
+				if (clearListenersOnSuccess) {					
+					connection.removeEventListener(NetStatusEvent.NET_STATUS,_status);
+					connection.removeEventListener(IOErrorEvent.DISK_ERROR,_ioerror);
+					connection.removeEventListener(IOErrorEvent.IO_ERROR,_ioerror);
+					connection.removeEventListener(IOErrorEvent.NETWORK_ERROR,_ioerror);
+					connection.removeEventListener(IOErrorEvent.VERIFY_ERROR,_ioerror);
+					connection.removeEventListener(SecurityErrorEvent.SECURITY_ERROR,_securityError);
+				}
 			}
 		}
 		
