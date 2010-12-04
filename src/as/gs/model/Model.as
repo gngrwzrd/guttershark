@@ -955,6 +955,48 @@ package gs.model
 		}
 		
 		/**
+		 * Traces information about fonts that will be registered when calling
+		 * the registerFont method.
+		 * 
+		 * @param groupId Optionally trace fonts that were declared as part of a specific group.
+		 */
+		public function traceFonts(groupId:String=null)
+		{
+			var child:XML;
+			var fc:Class;
+			var f:Font;
+			if(groupId)
+			{
+				var group:XML=fonts.group.(@id==groupId);
+				for each(child in group.font)
+				{
+					if(child.attribute("inSWF")!=undefined) fc = AssetManager.getClassFromSWFLibrary(child.@inSWF,child.@libraryName);
+					else fc = AssetManager.getClass(child.@libraryName);
+					f = new fc();
+					trace("---font---");
+					trace("libraryName:",child.@libraryName);
+					trace("fontName:",f.fontName);
+					trace("fontStyle",f.fontStyle);
+					trace("fontType",f.fontType);
+				}
+			}
+			else
+			{
+				for each(child in fonts.font)
+				{
+					if(child.attribute("inSWF")!=undefined) fc = AssetManager.getClassFromSWFLibrary(child.@inSWF,child.@libraryName);
+					else fc = AssetManager.getClass(child.@libraryName);
+					f = new fc();
+					trace("---font---");
+					trace("libraryName:",child.@libraryName);
+					trace("fontName:",f.fontName);
+					trace("fontStyle",f.fontStyle);
+					trace("fontType",f.fontType);
+				}
+			}
+		}
+		
+		/**
 		 * Get an HTTPService by id.
 		 * 
 		 * @param id The service id.
