@@ -1174,6 +1174,7 @@ package gs.util
 		 */
 		public static function findFileType(source:String):String
 		{
+			if(StringUtils.search(source,"?")==true)source=StringUtils.beforeFirst(source,"?");
 			var fileType:String;
 			var filenameRegEx:RegExp=new RegExp("\.([a-zA-Z0-9]{1,4}$)","i");
 			var filematch:Array=source.match(filenameRegEx);
