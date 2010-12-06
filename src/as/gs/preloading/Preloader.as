@@ -159,6 +159,8 @@ package gs.preloading
 		 */
 		private var _pixelsFull:Number;
 		
+		private var _percentLoaded:Number;
+		
 		/**
 		 * Last calculated kbps.
 		 */
@@ -185,6 +187,8 @@ package gs.preloading
 			loaded=0;
 			loadErrors=0;
 			_working=false;
+			_pixelsFull=0;
+			_percentLoaded=0;
 		}
 		
 		/**
@@ -251,7 +255,6 @@ package gs.preloading
 		 */
 		public function stop():void
 		{
-			currentItem.dispose();
 			currentItem=null;
 			_working=false;
 		}
@@ -279,7 +282,7 @@ package gs.preloading
 		 */
 		public function get numLeft():int
 		{
-			return loadItems.length;
+			return (currentItem?1:0)+loadItems.length;
 		}
 		
 		/**
@@ -300,6 +303,11 @@ package gs.preloading
 		public function get pixelsFull():Number
 		{
 			return _pixelsFull;
+		}
+		
+		public function get percentLoaded():Number
+		{
+			return _percentLoaded;
 		}
 		
 		/**
@@ -388,6 +396,7 @@ package gs.preloading
 			lastPixelUpdate=pixelUpdate;
 			lastPercentUpdate=percentUpdate;
 			this.pixelsFull=pixelUpdate;
+			this._percentLoaded=percentUpdate;
 			dispatchEvent(new PreloadProgressEvent(PreloadProgressEvent.PROGRESS,pixelUpdate,percentUpdate));
 		}
 		
@@ -401,6 +410,7 @@ package gs.preloading
 			{	
 				_working=false;
 				pixelsFull=totalPixelsToFill;
+				currentItem = null;
 				dispatchEvent(new PreloadProgressEvent(PreloadProgressEvent.PROGRESS,totalPixelsToFill,100));
 				dispatchEvent(new Event(Event.COMPLETE));
 				setTimeout(reset,150);
@@ -420,9 +430,7 @@ package gs.preloading
 			loadItemsDuplicate=[];
 			bytesTotalPool=[];
 			bytesLoadedPool=[];
-			if(currentItem)currentItem.dispose();
 			currentItem=null;
-			if(lastCompletedAsset)lastCompleteAsset.dispose();
 			lastCompleteAsset=null;
 		}
 		
@@ -437,9 +445,7 @@ package gs.preloading
 			loadItemsDuplicate=null;
 			bytesTotalPool=null;
 			bytesLoadedPool=null;
-			if(currentItem)currentItem.dispose();
 			currentItem=null;
-			if(lastCompletedAsset)lastCompleteAsset.dispose();
 			lastCompleteAsset=null;
 			loaderContext=null;
 		}
@@ -457,7 +463,7 @@ package gs.preloading
 			var source:String=pe.asset.source;
 			if(item.bytesTotal<0||isNaN(item.bytesTotal))return;
 			else if(item.bytesLoaded<0||isNaN(item.bytesLoaded))return;
-			if(!bytesTotalPool[source])bytesTotalPool[source]=item.bytesTotal;
+			bytesTotalPool[source]=item.bytesTotal;
 			bytesLoadedPool[source]=item.bytesLoaded;
 			dispatchEvent(new AssetProgressEvent(AssetProgressEvent.PROGRESS,pe.asset));
 			updateStatus();
@@ -478,6 +484,7 @@ package gs.preloading
 			dispatchEvent(new AssetCompleteEvent(AssetCompleteEvent.COMPLETE,e.asset));
 			updateStatus();
 			updateLoading();
+			currentItem=null;
 		}
 		
 		/**
