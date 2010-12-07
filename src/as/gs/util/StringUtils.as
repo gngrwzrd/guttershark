@@ -18,6 +18,18 @@ package gs.util
 		private static const MAXIMUM_CARD_LENGTH:int=16;
 		
 		/**
+		 * Removes \n and \t characters from a string.
+		 * 
+		 * @param str The string to remote characters from.
+		 */
+		public static function sanitizeCDATA_HTMLText(str:String):String {
+			var s:String = str;
+			s = s.replace(/\n/g,"");
+			s = s.replace(/\t/g,"");
+			return s;
+		}
+		
+		/**
 		 * Truncates a normal textfield to n lines.
 		 * 
 		 * @param txt The text to truncate.
