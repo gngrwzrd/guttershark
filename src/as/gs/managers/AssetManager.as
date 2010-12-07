@@ -143,6 +143,44 @@ package gs.managers
 		}
 		
 		/**
+		 * Save an FLV's meta data. You should use the same library
+		 * name that the FLV was loaded with.
+		 * 
+		 * @param libraryName The library name used when the FLV was registered.
+		 */
+		public static function saveFLVMetaData(libraryName:String, obj:*):void {
+			assets[libraryName+"__metadata__"] = obj;
+		}
+		
+		/**
+		 * Save an FLV's XMP meta data. You should use the same library
+		 * name that the FLV was loaded with.
+		 * 
+		 * @param libraryName The library name used when the FLV was registered.
+		 */
+		public static function saveFLVXMPMetaData(libraryName:String, obj:*):void {
+			assets[libraryName+"__xmpmetadata__"] = obj;
+		}
+		
+		/**
+		 * Get an FLV's meta data.
+		 * 
+		 * @param libraryName The library name used when registering the FLV.
+		 */
+		public static function getFLVMetaData(libraryName:String):Object {
+			return assets[libraryName+"__metadata__"];
+		}
+		
+		/**
+		 * Get an FLV's XMP meta data.
+		 * 
+		 * @param libraryName The library name used when registering the FLV.
+		 */
+		public static function getFLVXMPMetaData(libraryName:String):Object {
+			return assets[libraryName+"__metadata__"];
+		}
+		
+		/**
 		 * Get an asset that was loaded as text.
 		 * 
 		 * @param libraryName The library name used when the asset was registered.
@@ -405,6 +443,8 @@ package gs.managers
 		{
 			if(!libraryName)throw new ArgumentError("Parameter {libraryName} cannot be null");
 			var f:FLV=new FLV();
+			//f.xmpdata = getFLVXMPMetaData(libraryName);
+			f.metadata = getFLVMetaData(libraryName);
 			f.load(sourceLookup[libraryName],320,240,4,false,false);
 			return f;
 		}

@@ -69,12 +69,20 @@ package gs.preloading.workers
 		/**
 		 * @private
 		 */
-		public function onMetaData(metadata:Object):void{}
+		public function onMetaData(metadata:Object):void
+		{
+			AssetManager.saveFLVMetaData(this.asset.libraryName,metadata);
+			AssetManager.saveFLVMetaData(this.asset.source,metadata);
+		}
 		
 		/**
 		 * @private
 		 */
-		public function onXMPData(xmpdata:Object):void{}
+		public function onXMPData(xmpdata:*):void
+		{
+			AssetManager.saveFLVXMPMetaData(this.asset.libraryName,xmpdata);
+			AssetManager.saveFLVXMPMetaData(this.asset.source,xmpdata);
+		}
 		
 		//suppresses async errors
 		private function onasync(a:AsyncErrorEvent):void{}
