@@ -13,6 +13,8 @@ package gs.preloading.workers
 	import flash.net.NetStream;
 	import flash.utils.clearInterval;
 	import flash.utils.setInterval;
+	import flash.utils.setTimeout;
+	import flash.utils.clearTimeout;
 
 	/**
 	 * The FLVWorker class loads progressive flv's with
@@ -37,22 +39,15 @@ package gs.preloading.workers
 		private var bt:Number;
 		
 		/**
-		 * Whether or not meta data has been received.
+		 * Timer for disposal.
 		 */
-		private var gotMetaData:Boolean;
-		
-		/**
-		 * Whether or not dispose was called bfore meta data
-		 * was received.
-		 */
-		private var shouldDispose:Boolean;
+		private var disposalTimer:Number;
 		
 		/**
 		 * Load an asset of type flv.
 		 */
 		public override function load(asset:Asset):void
 		{
-			gotMetaData = false;
 			this.asset = asset;
 			if(AssetManager.isAvailable(asset.source))
 			{
@@ -83,10 +78,8 @@ package gs.preloading.workers
 		 */
 		public function onMetaData(metadata:Object):void
 		{
-			gotMetaData = true;
 			AssetManager.saveFLVMetaData(this.asset.libraryName,metadata);
 			AssetManager.saveFLVMetaData(this.asset.source,metadata);
-			if(shouldDispose) dispose();
 		}
 		
 		/**
@@ -94,10 +87,8 @@ package gs.preloading.workers
 		 */
 		public function onXMPData(xmpdata:*):void
 		{
-			gotMetaData = true;
 			AssetManager.saveFLVXMPMetaData(this.asset.libraryName,xmpdata);
 			AssetManager.saveFLVXMPMetaData(this.asset.source,xmpdata);
-			if(shouldDispose) dispose();
 		}
 		
 		//suppresses async errors
@@ -147,8 +138,12 @@ package gs.preloading.workers
 		 */
 		override public function dispose():void
 		{
-			shouldDispose = true;
-			if(!gotMetaData) return;
+			clearTimeout(disposalTimer);
+			disposalTimer = setTimeout(disposeLater,10000);
+		}
+		
+		private function disposeLater():void
+		{
 			removeEventListeners();
 			clearInterval(bt);
 			bt = NaN;
