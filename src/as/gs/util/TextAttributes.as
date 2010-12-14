@@ -79,6 +79,26 @@ package gs.util
 		public var clearsTextAfterApply:Boolean;
 		
 		/**
+		 * Whether or not the text field is selectable.
+		 */
+		public var selectable:Boolean;
+		
+		/**
+		 * Whether or not the text field is multiline.
+		 */
+		public var multiline:Boolean;
+		
+		/**
+		 * Whether or not the text field has a border on it.
+		 */
+		public var border:Boolean;
+		
+		/**
+		 * Whether or not the fonts are embedded.
+		 */
+		public var embedFonts:Boolean;
+		
+		/**
 		 * lookup
 		 */
 		private static var _tas:Dictionary = new Dictionary(true);
@@ -130,7 +150,10 @@ package gs.util
 		 * @param autoSize The auto size for the text field.
 		 * @param text The text to use for this text field.
 		 */
-		public function TextAttributes(styleSheet:StyleSheet =null,textFormat:TextFormat=null, antiAliasType:String=null, autoSize:String=null, text:String=null)
+		public function TextAttributes(styleSheet:StyleSheet = null,textFormat:TextFormat = null,
+			antiAliasType:String = null, autoSize:String = null, text:String = null,
+			selectable:Boolean = false, multiline:Boolean = false, border:Boolean = false,
+			embedFonts:Boolean = true)
 		{
 			if(styleSheet && textFormat) throw new Error("TextAttributes cannot have both textFormat and styleSheets set. Use one or the other.");
 			this.styleSheet=styleSheet;
@@ -138,6 +161,10 @@ package gs.util
 			this.antiAliasType=antiAliasType;
 			this.autoSize=autoSize;
 			this.text=text;
+			this.selectable=selectable;
+			this.multiline=multiline;
+			this.border=border;
+			this.embedFonts=embedFonts;
 		}
 		
 		/**
@@ -164,15 +191,21 @@ package gs.util
 			if(textFormat&&styleSheet) trace("WARNING: TextAttributes can't apply both text formats and stylesheets, stylesheets will take precedence over text formats");
 			if(textFormat)
 			{
+				tf.selectable = selectable;
+				tf.border = border;
+				tf.multiline = multiline;
 				tf.defaultTextFormat=textFormat;
 				tf.setTextFormat(textFormat);
 				if(antiAliasType)tf.antiAliasType=antiAliasType;
 				if(autoSize)tf.autoSize=autoSize;
-				tf.embedFonts=true;
+				tf.embedFonts=embedFonts;
 				tf.text=tmp;
 			}
 			if(styleSheet)
 			{
+				tf.selectable = selectable;
+				tf.border = border;
+				tf.multiline = multiline;
 				tf.embedFonts=true;
 				tf.styleSheet=styleSheet;
 				if(antiAliasType)tf.antiAliasType=antiAliasType;

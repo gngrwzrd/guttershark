@@ -76,7 +76,11 @@ package gs.model
 	 *    &lt;/attributes&gt;
 	 *    
 	 *    &lt;textAttributes&gt;
-	 *        &lt;attribute id="myTextAttribute1" autoSize="left" antiAliasType="advanced" styleSheetId='someStyleSheetId' textFormatId='someTextFormatId' stringId='someStringId' wrapInBodySpan='true' /&gt;
+	 *        &lt;attribute id="myTextAttribute1" autoSize="left" antiAliasType="advanced"
+	 *            styleSheetId='someStyleSheetId' textFormatId='someTextFormatId'
+	 *            stringId='someStringId' wrapInBodySpan='true' selectable='false' border='false'
+	 *            multiline='false' embedFonts='true'
+	 *        /&gt;
 	 *        &lt;attribute id="myTextAttribute2" styleSheetId='someStyleSheetId' /&gt; &lt;!-- you don't have to use every attribute, it will only apply what's here. --&gt;
 	 *    &lt/textAttributes&gt;
 	 *    
@@ -567,6 +571,10 @@ package gs.model
 			var string:String=null;
 			var anti:String=null;
 			var auto:String=null;
+			var sel:Boolean=false;
+			var mult:Boolean=false;
+			var embed:Boolean=true;
+			var bord:Boolean=false;
 			var attr:XMLList=textAttributes..attribute.(@id==id);
 			if(!attr)return null;
 			if(attr.hasOwnProperty("@styleSheetId"))ss=getStyleSheetById(attr.@styleSheetId);
@@ -582,7 +590,11 @@ package gs.model
 			}
 			if(attr.hasOwnProperty("@antiAliasType"))anti=attr.@antiAliasType;
 			if(attr.hasOwnProperty("@autoSize"))auto=attr.@autoSize;
-			var ta:TextAttributes=new TextAttributes(ss,tf,anti,auto,string);
+			if(attr.hasOwnProperty("@selectable"))sel=StringUtils.toBoolean(attr.@selectable);
+			if(attr.hasOwnProperty("@border"))bord=StringUtils.toBoolean(attr.@border);
+			if(attr.hasOwnProperty("@embedFonts"))embed=StringUtils.toBoolean(attr.@embedFonts);
+			if(attr.hasOwnProperty("@multiline"))mult=StringUtils.toBoolean(attr.@multiline);
+			var ta:TextAttributes=new TextAttributes(ss,tf,anti,auto,string,sel,mult,bord,embed);
 			if(attr.hasOwnProperty("@wrapInBodySpan"))ta.wrapInBodySpan=(attr.@wrapInBodySpan=="true")?true:false;
 			if(attr.hasOwnProperty("@clearsTextAfterApply"))ta.clearsTextAfterApply=(attr.@clearsTextAfterApply=="true")?true:false;
 			modelcache.cacheObject(cachekey,ta);
