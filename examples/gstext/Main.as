@@ -41,6 +41,10 @@ package
 			t1 = GSTextField.createWithModelHelp(model,"attr1");
 			addChild(t1);
 			
+			
+			
+			
+			
 			//with raw parameters
 			var ss:StyleSheet = model.getStyleSheetById("style1");
 			t2 = GSTextField.create(ss);

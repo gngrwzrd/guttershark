@@ -70,7 +70,7 @@ package gs.display
 		 * @param textAttributesId An id for a text attribute defined in the model
 		 */
 		public static function createWithModelHelp(model:Model,
-			textAttributesId:String, textValue:String = null):GSTextField
+			textAttributesId:String):GSTextField
 		{
 			var gst:GSTextField = new GSTextField();
 			var ta:TextAttributes = model.getTextAttributeById(textAttributesId);
@@ -142,6 +142,7 @@ package gs.display
 			if(ta.wrapInBodySpan)s="<span class='body'>"+s+"<span>";
 			if(ta.styleSheet)tf.htmlText=s;
 			else tf.text=s;
+			textValue=s;
 			if(truncHTMLOnUpdate) truncateHTML();
 			if(truncRegularOnUpdate) truncateHTML();
 		}
@@ -209,7 +210,7 @@ package gs.display
 		 */
 		public function truncateHTML():void {
 			StringUtils.truncateHTMLText(textValue,tf,truncHTMLNumLines,truncTrail);
-			textValue=tf.text;
+			textValue=tf.htmlText;
 		}
 	}
 
