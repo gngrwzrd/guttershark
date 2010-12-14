@@ -48,6 +48,21 @@ package gs.model
 	 *        &lt;/group&gt;
 	 *    &lt;/assets&gt;
 	 *    
+	 *    &lt;captions&gt;
+	 *        &lt;group id="spiritVideo"&gt;
+	 *             &lt;caption time="3" duration="3" bgcolor="0x222222"&gt;
+	 *                  &lt;![CDATA[
+	 *                      &lt;span class="body"&gt;bob lob law&lt;/span&gt;
+	 *                  ]]&gt;
+	 *             &lt;/caption&gt;
+	 *             &lt;caption time="8" duration="3" bgcolor="0x222222"&gt;
+	 *                  &lt;![CDATA[
+	 *                      &lt;span class="body"&gt;bob lob law&lt;/span&gt;
+	 *                  ]]&gt;
+	 *             &lt;/caption&gt;
+	 *        &lt;/group&gt;
+	 *    &lt;/captions&gt;
+	 *    
 	 *    &lt;links&gt;
 	 *        &lt;link id="google" url="http://www.google.com" /&gt;
 	 *        &lt;link id="rubyamf" url="http://www.rubyamf.org" /&gt;
@@ -205,7 +220,13 @@ package gs.model
 		 * node in the model xml.
 		 */
 		public var textAttributes:XMLList;
-
+		
+		/**
+		 * Stores a reference to the <code>&lt;captions&gt;&lt;/captions&gt;</code>
+		 * node in the model xml.
+		 */
+		public var captions:XMLList;
+		
 		/**
 		 * If external interface is not available, all paths are stored here.
 		 */
@@ -315,6 +336,7 @@ package gs.model
 			if(_model.fonts)fonts=_model.fonts;
 			if(_model.security)security=_model.security;
 			if(_model.textAttributes)textAttributes=_model.textAttributes;
+			if(_model.captions)captions=_model.captions;
 		}
 		
 		/**
@@ -413,6 +435,17 @@ package gs.model
 			//for each(n in x..asset)payload.push(getAssetByLibraryName(n.@libraryName));
 			//modelcache.cacheObject(cacheKey,payload);
 			return payload;
+		}
+		
+		/**
+		 * Returns a captioning set for flv captioning.
+		 * 
+		 * @param gruopId The captioning group id.
+		 */
+		public function getCaptionsByGroupId(groupId:String):*
+		{
+			if(!groupId) return null;
+			return captions.group.(@id == groupId).caption;
 		}
 		
 		/**
