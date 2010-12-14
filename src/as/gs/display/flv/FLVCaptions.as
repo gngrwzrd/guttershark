@@ -130,8 +130,8 @@ package gs.display.flv
 			working = false;
 			if(flv.video.parent && flv.video.parent.contains(this)) {
 				flv.video.parent.removeChild(this);
+				tf.text = "";
 			}
-			clearTimeout(durtimer);
 		}
 		
 		/**
@@ -139,6 +139,9 @@ package gs.display.flv
 		 */
 		public function start():void {
 			working = true;
+			if(flv.video.parent && !flv.video.parent.contains(this)) {
+				flv.video.parent.addChild(this);
+			}
 		}
 		
 		/**
