@@ -102,7 +102,7 @@ package gs.display
 			textFormat:TextFormat = null, selectable:Boolean = false,
 			multiline:Boolean = false, border:Boolean = false,
 			embedFonts:Boolean = false, textValue:String = null,
-			autoSize:String = "left", antiAliasType:String = "advance"):GSTextField
+			autoSize:String = "left", antiAliasType:String = "advanced"):GSTextField
 		{
 			var gst:GSTextField = new GSTextField();
 			var tf:TextField = TextFieldUtils.create(
