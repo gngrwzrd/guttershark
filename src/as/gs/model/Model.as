@@ -577,8 +577,9 @@ package gs.model
 			var bord:Boolean=false;
 			var attr:XMLList=textAttributes..attribute.(@id==id);
 			if(!attr)return null;
-			if(attr.hasOwnProperty("@styleSheetId"))ss=getStyleSheetById(attr.@styleSheetId);
-			if(attr.hasOwnProperty("@textFormatId"))tf=getTextFormatById(attr.@textFormatId);
+			if(attr.hasOwnProperty("@embedFonts"))embed=StringUtils.toBoolean(attr.@embedFonts);
+			if(attr.hasOwnProperty("@styleSheetId"))ss=getStyleSheetById(attr.@styleSheetId,embed);
+			if(attr.hasOwnProperty("@textFormatId"))tf=getTextFormatById(attr.@textFormatId,embed);
 			if(attr.hasOwnProperty("@stringId"))
 			{
 				if(!strings)
@@ -590,9 +591,9 @@ package gs.model
 			}
 			if(attr.hasOwnProperty("@antiAliasType"))anti=attr.@antiAliasType;
 			if(attr.hasOwnProperty("@autoSize"))auto=attr.@autoSize;
+			if(attr.hasOwnProperty("@autosize"))auto=attr.@autosize;
 			if(attr.hasOwnProperty("@selectable"))sel=StringUtils.toBoolean(attr.@selectable);
 			if(attr.hasOwnProperty("@border"))bord=StringUtils.toBoolean(attr.@border);
-			if(attr.hasOwnProperty("@embedFonts"))embed=StringUtils.toBoolean(attr.@embedFonts);
 			if(attr.hasOwnProperty("@multiline"))mult=StringUtils.toBoolean(attr.@multiline);
 			var ta:TextAttributes=new TextAttributes(ss,tf,anti,auto,string,sel,mult,bord,embed);
 			if(attr.hasOwnProperty("@wrapInBodySpan"))ta.wrapInBodySpan=(attr.@wrapInBodySpan=="true")?true:false;
@@ -827,7 +828,7 @@ package gs.model
 		 * 
 		 * @param id The id of the stylesheet node to grab from the model.
 		 */
-		public function getStyleSheetById(id:String):StyleSheet
+		public function getStyleSheetById(id:String, applyEmbeddedFonts:Boolean = true):StyleSheet
 		{
 			checkForXML();
 			var cacheId:String="css_"+id;
@@ -849,31 +850,34 @@ package gs.model
 			var fc:Class;
 			var f:Font;
 			var finalFontFamily:String;
-			for(;i<l;i++)
+			if(applyEmbeddedFonts)
 			{
-				so=s.getStyle(names[int(i)]);
-				for(var key:String in so)
+				for(;i<l;i++)
 				{
-					if(key=="font")
+					so=s.getStyle(names[int(i)]);
+					for(var key:String in so)
 					{
-						var fontNode:XMLList=fonts..font.(@libraryName==so[key]);
-						if(fontNode.hasOwnProperty("@inSWF"))fc=AssetManager.getClassFromSWFLibrary(fontNode.@inSWF,so[key]);
-						else fc=AssetManager.getClass(so[key]);
-						Font.registerFont(fc);
-						f=new fc();
-						delete so[key];
-						finalFontFamily=f.fontName;
+						if(key=="font")
+						{
+							var fontNode:XMLList=fonts..font.(@libraryName==so[key]);
+							if(fontNode.hasOwnProperty("@inSWF"))fc=AssetManager.getClassFromSWFLibrary(fontNode.@inSWF,so[key]);
+							else fc=AssetManager.getClass(so[key]);
+							Font.registerFont(fc);
+							f=new fc();
+							delete so[key];
+							finalFontFamily=f.fontName;
+						}
+						else if(key=="fontFamily")
+						{
+							fc=AssetManager.getClass(so[key]);
+							Font.registerFont(fc);
+							f=new fc();
+							finalFontFamily=f.fontName;
+						}
 					}
-					else if(key=="fontFamily")
-					{
-						fc=AssetManager.getClass(so[key]);
-						Font.registerFont(fc);
-						f=new fc();
-						finalFontFamily=f.fontName;
-					}
+					if(finalFontFamily)so['fontFamily']=finalFontFamily;
+					s.setStyle(names[int(i)],so);
 				}
-				if(finalFontFamily)so['fontFamily']=finalFontFamily;
-				s.setStyle(names[int(i)],so);
 			}
 			modelcache.cacheObject(cacheId,s);
 			return s;
@@ -928,7 +932,7 @@ package gs.model
 		 * <li>underline</li>
 		 * </ul>
 		 */
-		public function getTextFormatById(id:String):TextFormat
+		public function getTextFormatById(id:String,applyEmbeddedFonts:Boolean = true):TextFormat
 		{
 			checkForXML();
 			var cacheId:String="tf_"+id;
@@ -942,21 +946,27 @@ package gs.model
 			if(n.attribute("color")!=undefined) tf.color=Number(n.@color);
 			if(n.attribute("font")!=undefined)
 			{
-				var fontNode:*;
-				if(fonts)fontNode=fonts..font.(@libraryName==n.@font);
-				if(fontNode==undefined) tf.font=AssetManager.getFont(n.@font).fontName;
-				else
+				if(applyEmbeddedFonts)
 				{
-					var klass:Class;
-					var font:Font;
-					if(fontNode.attribute("inSWF")!=undefined)
+					var fontNode:*;
+					if(fonts)fontNode=fonts..font.(@libraryName==n.@font);
+					if(fontNode==undefined) tf.font=AssetManager.getFont(n.@font).fontName;
+					else
 					{
-						klass=AssetManager.getClassFromSWFLibrary(fontNode.@inSWF,fontNode.@libraryName);
-						font=new klass();
+						var klass:Class;
+						var font:Font;
+						if(fontNode.attribute("inSWF")!=undefined)
+						{
+							klass=AssetManager.getClassFromSWFLibrary(fontNode.@inSWF,fontNode.@libraryName);
+							font=new klass();
+						}
+						else font=AssetManager.getFont(fontNode.@libraryName);
+						tf.font=font.fontName;
 					}
-					else font=AssetManager.getFont(fontNode.@libraryName);
-					tf.font=font.fontName;
+				} else {
+					tf.font = n.@font.toString();
 				}
+
 			}
 			if(n.attribute("indent")!=undefined) tf.indent=Number(n.@indent);
 			if(n.attribute("italic")!=undefined) tf.italic=StringUtils.toBoolean(n.@italic);
