@@ -72,4 +72,6 @@ package
 		public function onPlay4Click(e:MouseEvent =null):void
 		{
 			flv.load("adidas_carry.flv");
-		}	}}
+		}
+	}
+}
