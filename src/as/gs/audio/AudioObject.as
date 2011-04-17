@@ -96,9 +96,7 @@ package gs.audio
 	 * It can control a sound instance or any object with
 	 * a <em><strong>soundTransform</strong></em> property.
 	 * 
-	 * <p><b>Examples</b> are in the <a target="_blank" href="http://gitweb.codeendeavor.com/?p=guttershark.git;a=summary">guttershark</a> repository.</p>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
+	 * <p><b>Examples</b> are in the guttershark repository.</p>
 	 * 
 	 * @see gs.audio.AudioGroup
 	 */
@@ -316,7 +314,7 @@ package gs.audio
 			if((!ops&&_isPlaying) || (!ops.restartIfPlaying&&_isPlaying))return;
 			if(_isPlaying)channel.stop();
 			removeListeners();
-			var startTime:Number=(ops.starTime)?ops.starTime:0;
+			var startTime:Number=(ops.startTime)?ops.startTime:0;
 			var loops:Number=(ops.loops)?ops.loops:0;
 			var panning:Number=(ops.panning)?ops.panning:0;
 			var volume:Number=(ops.volume)?ops.volume:1;
