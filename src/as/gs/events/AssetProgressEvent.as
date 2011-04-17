@@ -7,8 +7,6 @@ package gs.events
 	/**
 	 * The AssetProgressEvent dispatches for an Asset that is downloading.
 	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
-	 * 
 	 * @see gs.preloading.Preloader
 	 * @see gs.managers.AssetManager
 	 */

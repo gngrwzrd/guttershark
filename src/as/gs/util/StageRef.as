@@ -7,8 +7,6 @@ package gs.util
 	 * 
 	 * <p>and is used in GSClip and GSSprite to fix null
 	 * stage references.</p>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class StageRef
 	{

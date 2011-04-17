@@ -4,8 +4,6 @@ package gs.util
 	/**
 	 * The XMLUtils class contains generic methods
 	 * for working with XML.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class XMLUtils
 	{

@@ -6,8 +6,6 @@ package gs.util
 	/**
 	 * The FlashvarUtils class contains utility methods for working
 	 * with flashvars.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class FlashvarUtils 
 	{

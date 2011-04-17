@@ -8,8 +8,6 @@ package gs.util
 	
 	/**
 	 * The XMLLoader class loads xml.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	final public class XMLLoader extends EventDispatcher
 	{	

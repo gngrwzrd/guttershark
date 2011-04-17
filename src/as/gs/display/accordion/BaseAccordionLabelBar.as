@@ -8,9 +8,7 @@ package gs.display.accordion
 	 * The BaseAccordionLabelBar class is the base class
 	 * for all label bars in an accordion pane.
 	 * 
-	 * <p><b>Examples</b> are in the <a target="_blank" href="http://gitweb.codeendeavor.com/?p=guttershark.git;a=summary">guttershark</a> repository.</p>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
+	 * <p><b>Examples</b> are in the guttershark repository.</p>
 	 */
 	public class BaseAccordionLabelBar extends GSClip
 	{

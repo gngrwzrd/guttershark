@@ -8,8 +8,6 @@ package gs.display
 	/**
 	 * The GSSprite class is a base sprite that
 	 * fixes null stage references.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class GSSprite extends Sprite
 	{

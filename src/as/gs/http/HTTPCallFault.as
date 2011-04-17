@@ -8,8 +8,6 @@ package gs.http
 	 * <p>Properties on this object will be set according
 	 * to the http call instance's responseFormat.</p>
 	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
-	 * 
 	 * @see gs.http.HTTPCall
 	 */
 	public class HTTPCallFault

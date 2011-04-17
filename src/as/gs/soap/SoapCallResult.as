@@ -6,8 +6,6 @@ package gs.soap
 	 * The SoapCallResult class wraps soap results and
 	 * is passed to your onResult handlers.
 	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
-	 * 
 	 * @see gs.soap.SoapService
 	 */
 	final public class SoapCallResult

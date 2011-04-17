@@ -30,8 +30,6 @@ package gs.util
 	 * //display objects to you can quickly toggle a property.
 	 * SetterUtils.visible(false,mcref);
 	 * </listing>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	final public class SetterUtils 
 	{

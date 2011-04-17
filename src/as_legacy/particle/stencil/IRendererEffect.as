@@ -6,8 +6,6 @@ package net.guttershark.display.particle.stencil
 	/**
 	 * The IRenderEffect interface creates the contract for objects
 	 * that are implementing a render effect to be used with the StencilRenderer.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public interface IRendererEffect 
 	{

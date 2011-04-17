@@ -14,8 +14,6 @@ package gs.preloading.workers
 	 * The StyleSheetWorker class is the worker that loads all
 	 * css files.
 	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
-	 * 
 	 * @see gs.preloading.Preloader
 	 * @see gs.managers.AssetManager
 	 */

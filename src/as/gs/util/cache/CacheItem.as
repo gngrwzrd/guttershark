@@ -9,8 +9,6 @@ package gs.util.cache
 	 * for expirations at an object level.
 	 * 
 	 * <p>This class does not need to be used in order to store something in a Cache.<p>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	final public class CacheItem
 	{

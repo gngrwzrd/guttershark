@@ -55,8 +55,6 @@ package gs.util
 	 * <li>FLV</li>
 	 * <li>XMLLoader</li>
 	 * </ul>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class EventHandler 
 	{

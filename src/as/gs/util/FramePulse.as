@@ -18,8 +18,6 @@ package gs.util
 	 *     trace("on enter frame");
 	 * }
 	 * </listing>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	final public class FramePulse extends EventDispatcher
 	{

@@ -19,8 +19,6 @@ package gs.util.autosuggest
 	 * <p>Now assume you started typing "Fl", the auto suggest instance would return an
 	 * array of AutoSuggestMatch instances; the two that matched were "Flash" and "Flex".</p>
 	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
-	 * 
 	 * @see gs.util.autosuggest.AutoSuggestMatch
 	 */
 	public class AutoSuggest

@@ -7,8 +7,6 @@ package net.guttershark.display.particle.stencil
 	/**
 	 * The StencilParticle must extend the movie clip you are
 	 * using as a particle for an IRendererEffect.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class StencilParticle extends MovieClip
 	{

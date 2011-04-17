@@ -8,8 +8,6 @@ package gs.util
 	/**
 	 * The BitmapUtils class contains utility methods for
 	 * common bitmap operations.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	final public class BitmapUtils
 	{

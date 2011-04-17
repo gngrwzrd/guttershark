@@ -4,8 +4,6 @@ package gs.util
 	
 	/**
 	 * The StringUtils class contains utility methods for strings.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	final public class StringUtils
 	{

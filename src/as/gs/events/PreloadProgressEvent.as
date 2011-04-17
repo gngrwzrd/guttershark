@@ -6,8 +6,6 @@ package gs.events
 	 * The PreloadProgressEvent dispatches to notify listeners the overall
 	 * progress of a Preloader.
 	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
-	 * 
 	 * @see gs.preloading.Preloader
 	 * @see gs.managers.AssetManager
 	 */

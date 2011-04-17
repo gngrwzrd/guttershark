@@ -7,8 +7,6 @@ package gs.events
 	/**
 	 * The AssetCompleteEvent dispatches when an asset has completed downloading.
 	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
-	 * 
 	 * @see gs.preloading.Preloader
 	 * @see gs.managers.AssetManager
 	 */

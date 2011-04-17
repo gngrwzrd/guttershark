@@ -7,8 +7,6 @@ package gs.soap
 	 * about each operation parsed out from the original
 	 * wsdl.
 	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
-	 * 
 	 * @see gs.soap.SoapService
 	 */
 	final public class SoapMethodInfo

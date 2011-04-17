@@ -7,8 +7,6 @@ package gs.display.view
 	/**
 	 * The BaseView class is the base for any views, and provides
 	 * common hooks and properties.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class BaseView extends GSClip
 	{

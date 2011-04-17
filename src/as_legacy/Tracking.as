@@ -14,8 +14,6 @@ package net.guttershark.util
 	 * <p>You can shut off the default behavior, of using
 	 * the guttershark, javascript tracking framework, to
 	 * have the tracking calls made from flash.</p>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	final public class Tracking
 	{

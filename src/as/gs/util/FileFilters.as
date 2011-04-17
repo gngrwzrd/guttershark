@@ -5,8 +5,6 @@ package gs.util
 	/**
 	 * The FileFilterUtils class provides static variables that have predefined
 	 * file filter instances, to save time.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	final public class FileFilters 
 	{

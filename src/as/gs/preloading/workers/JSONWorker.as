@@ -14,8 +14,6 @@ package gs.preloading.workers
 	 * The JSONWorker class is a worker that's used to load
 	 * some URL that's JSON.
 	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
-	 * 
 	 * @see gs.preloading.Preloader
 	 * @see gs.managers.AssetManager
 	 */

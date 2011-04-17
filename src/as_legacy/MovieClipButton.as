@@ -38,8 +38,6 @@ package net.guttershark.display
 	 * When you set the <code>locked</code> property, all MouseEvents will <strong>not</strong>
 	 * be dispatched. If you absolutely need mouse events even though the button is locked,
 	 * you can add an event listener with a higher priority than 10.</p>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public dynamic class MovieClipButton extends MovieClip
 	{

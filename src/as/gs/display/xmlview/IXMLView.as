@@ -4,8 +4,6 @@ package gs.display.xmlview
 	/**
 	 * Interface for views that are XMLViews and work
 	 * with an XMLViewManager.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public interface IXMLView
 	{

@@ -32,9 +32,7 @@ package gs.display
 	 * be laid out exactly how they are to be used. Otherwise
 	 * you'll see weird offsets, which aren't correct.</p>
 	 * 
-	 * <p><b>Examples</b> are in the <a target="_blank" href="http://gitweb.codeendeavor.com/?p=guttershark.git;a=summary">guttershark</a> repository.</p>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
+	 * <p><b>Examples</b> are in the guttershark repository.</p>
 	 */
 	final public class ScrollBar
 	{

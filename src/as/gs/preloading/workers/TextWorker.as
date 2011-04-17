@@ -15,8 +15,6 @@ package gs.preloading.workers
 	 * that is treated as raw text. Anything can be done with
 	 * the loaded text.
 	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
-	 * 
 	 * @see gs.preloading.Preloader
 	 * @see gs.managers.AssetManager
 	 */

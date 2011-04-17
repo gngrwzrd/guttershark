@@ -23,8 +23,6 @@ package gs.util.akamai
      * 
      * <p>The AkamaNCManager class is set on the VideoPlayer class, because the VideoPlayer
      * class is used internally to the FLVPlayback Components.</p>
-     * 
-     * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
      */
     final public class AkamaiNCManager extends NCManager implements INCManager
     {

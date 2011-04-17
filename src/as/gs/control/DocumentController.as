@@ -19,8 +19,6 @@ package gs.control
 	 * 
 	 * <p><b>Examples</b> are in the <a target="_blank" href="http://gitweb.codeendeavor.com/?p=guttershark.git;a=summary">guttershark</a>
 	 * repository. Most of the examples in the repository use the document controller.</p>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class DocumentController extends Document
 	{

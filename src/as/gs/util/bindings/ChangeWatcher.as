@@ -10,8 +10,6 @@ package gs.util.bindings
 	 * <p>It takes care of the logic needed, to pass
 	 * on values to functions, or set properties, when
 	 * a change event occurs.</p>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	final public class ChangeWatcher
 	{

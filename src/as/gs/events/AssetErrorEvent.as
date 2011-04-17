@@ -7,8 +7,6 @@ package gs.events
 	/**
 	 * The AssetErrorEvent dispatches when an asset has stopped loading due to an error.
 	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
-	 * 
 	 * @see gs.preloading.Preloader
 	 * @see gs.managers.AssetManager
 	 */

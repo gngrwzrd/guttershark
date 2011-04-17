@@ -102,8 +102,6 @@ package gs.preloading.workers
 	 * 
 	 * <p>See the source code in any other worker in this package for subclassing examples.</p>
 	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
-	 * 
 	 * @see gs.preloading.Preloader
 	 * @see gs.managers.AssetManager
 	 */

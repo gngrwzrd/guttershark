@@ -5,8 +5,6 @@ package gs.util.bindings
 	/**
 	 * The BindingUtils class creates bindings
 	 * for you.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class BindingUtils 
 	{

@@ -8,8 +8,6 @@ package gs.util
 	/**
 	 * The SocialShares class contains methods that have shortcuts
 	 * for navigating to social sites, to share a link.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class SocialShares
 	{

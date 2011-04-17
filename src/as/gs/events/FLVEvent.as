@@ -5,8 +5,6 @@ package gs.events
 	/**
 	 * The FLVEvent class is dispatched from an FLV instance.
 	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
-	 * 
 	 * @see gs.display.flv.FLV
 	 */
 	final public class FLVEvent extends Event

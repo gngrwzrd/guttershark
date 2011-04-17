@@ -8,8 +8,6 @@ package gs.remoting
 	 * 
 	 * <p>This class spawns RemotingCall instances internally.</p>
 	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
-	 * 
 	 * @see gs.remoting.RemotingCall
 	 */
 	public class RemotingService 

@@ -6,8 +6,6 @@ package gs.util
 	/**
 	 * The PlayerUtils class provides shortcut methods for finding
 	 * things about the currently running player.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	final public class PlayerUtils
 	{

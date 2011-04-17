@@ -18,8 +18,6 @@ package gs.util
 	 * 
 	 * <p>This was originally written by Shane McCartney
 	 * from lostinactionscript.com</p>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class Profiler
 	{

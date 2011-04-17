@@ -4,8 +4,6 @@ package gs.util
 	/**
 	 * The DateUtils class contains utility methods for working with
 	 * dates.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	final public class DateUtils
 	{

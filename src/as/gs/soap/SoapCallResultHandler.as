@@ -6,8 +6,6 @@ package gs.soap
 	 * responses and figures out if they're good
 	 * responses or faults.
 	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
-	 * 
 	 * @see gs.soap.SoapService
 	 */
 	public class SoapCallResultHandler

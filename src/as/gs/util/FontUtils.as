@@ -5,8 +5,6 @@ package gs.util
 
 	/**
 	 * The FontUtils class contains utility methods for fonts.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class FontUtils 
 	{

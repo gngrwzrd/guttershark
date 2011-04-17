@@ -5,8 +5,6 @@ package gs.util
 
 	/**
 	 * The ObjectUtils class has utility methods for working with objects.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	final public class ObjectUtils
 	{

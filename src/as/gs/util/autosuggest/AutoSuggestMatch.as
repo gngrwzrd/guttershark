@@ -21,8 +21,6 @@ package gs.util.autosuggest
 	 * <p>The highlightedTerm is provided specifically for working with textfields
 	 * and styles. You can set the style of both the span class's to provide a highlight
 	 * effect.</p>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class AutoSuggestMatch
 	{

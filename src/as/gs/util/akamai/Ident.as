@@ -13,8 +13,6 @@ package gs.util.akamai
 	 * 
 	 * <p>Ident services take geographical positions into account and returns 
 	 * the best IP address to use for a Flash Media Server on Akamai's network.</p>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	final public class Ident
 	{

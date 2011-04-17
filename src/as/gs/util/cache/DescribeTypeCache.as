@@ -5,8 +5,6 @@ package gs.util.cache
 	 * The DescribeType classs wraps the flash.util.describeType
 	 * function and caches all object descriptions so that
 	 * describeType will only be called once for any object.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	final public class DescribeTypeCache 
 	{

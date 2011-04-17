@@ -6,8 +6,6 @@ package gs.util
 	/**
 	 * The DisplayListUtils class contains utlility methods for display
 	 * list manipulation.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	final public class DisplayListUtils
 	{

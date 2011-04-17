@@ -7,8 +7,6 @@ package gs.events
 	 * audio events from audible objects, audible groups,
 	 * and the sound manager.
 	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
-	 * 
 	 * @see gs.audio.AudioGroup
 	 * @see gs.audio.AudioObject
 	 */

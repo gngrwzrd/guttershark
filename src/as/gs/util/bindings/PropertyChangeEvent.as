@@ -6,8 +6,6 @@ package gs.util.bindings
 	 * The PropertyChangeEvent is used internally to
 	 * the BindableObject class, which dispatches
 	 * events needed for bindings.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	final public class PropertyChangeEvent extends Event
 	{

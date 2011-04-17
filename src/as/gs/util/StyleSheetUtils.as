@@ -6,8 +6,6 @@ package gs.util
 	/**
 	 * The StyleSheetUtils class contains utility methods for working
 	 * with stylesheets.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class StyleSheetUtils
 	{

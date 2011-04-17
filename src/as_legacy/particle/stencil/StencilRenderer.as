@@ -12,8 +12,6 @@ package net.guttershark.display.particle.stencil
 	/**
 	 * The StencilRenderer class renders display objects out of particles, you
 	 * can see an example at <a href="http://www.populistsf.com/">populist.com</a>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class StencilRenderer
 	{

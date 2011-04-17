@@ -23,8 +23,6 @@ package gs.util
 	 * EventBroadcaster.addEventListener("test",onTest);
 	 * EventBroadcaster.broadcastEvent(new Event("test"));
 	 * </listing>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class EventBroadcaster
 	{

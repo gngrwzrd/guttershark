@@ -44,8 +44,6 @@ package net.guttershark.managers
 	 * var myClip:MovieClip=new MovieClip();
 	 * myClip.contextMenu=ml.createContextMenuById("menu1");
 	 * </listing>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	final public class ContextMenuManager
 	{
@@ -266,4 +264,6 @@ package net.guttershark.managers
 			i=0;
 			l=ids.length;
 			for(i;i<l;i++)itemsByMenuAndId[cm][ids[i]]=null;
-		}	}}
+		}
+	}
+}

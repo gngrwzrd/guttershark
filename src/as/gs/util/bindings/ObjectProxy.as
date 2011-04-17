@@ -10,8 +10,6 @@ package gs.util.bindings
 	/**
 	 * The ObjectProxy class is the base class that
 	 * has the necessary proxy methods, which enable bindings.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	dynamic public class ObjectProxy extends Proxy implements IEventDispatcher
 	{

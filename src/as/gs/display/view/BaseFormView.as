@@ -6,8 +6,6 @@ package gs.display.view
 	 * The BaseFormView class defines the base form view
 	 * should implement, to follow a good pattern of the most commonly
 	 * used form functionality.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class BaseFormView extends BaseView
 	{

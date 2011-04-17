@@ -8,8 +8,6 @@ package gs.display
 	/**
 	 * The GSClip class is a base movie clip that
 	 * fixes null stage references.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class GSClip extends MovieClip
 	{

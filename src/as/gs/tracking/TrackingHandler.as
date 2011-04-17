@@ -8,8 +8,6 @@ package gs.tracking
 	 * 
 	 * <p>It's used when you call the register method of the
 	 * Tracking class. You don't need to use this manually.</p>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class TrackingHandler 
 	{

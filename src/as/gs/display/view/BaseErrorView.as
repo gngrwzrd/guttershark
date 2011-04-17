@@ -6,8 +6,6 @@ package gs.display.view
 	/**
 	 * The BaseErrorView class provides some default functionality
 	 * that might want to be used for an "error" state of a form.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class BaseErrorView extends BaseFormView
 	{

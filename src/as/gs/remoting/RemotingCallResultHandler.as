@@ -4,8 +4,6 @@ package gs.remoting
 	/**
 	 * The RemotingCallResultHandler class processes a RemotingCall response.
 	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
-	 * 
 	 * @see gs.remoting.RemotingCall
 	 */
 	public class RemotingCallResultHandler

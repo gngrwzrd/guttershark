@@ -4,8 +4,6 @@ package gs.util.iters
 	/**
 	 * The ArrayPageIterator class provides a non-destructive way
 	 * to iterate over an array in page sizes.
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class ArrayPageIterator 
 	{

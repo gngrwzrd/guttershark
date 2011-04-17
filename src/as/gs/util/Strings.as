@@ -24,8 +24,6 @@ package gs.util
 	 *   &lt;string id="purchasePowerAdjust"&gt;&lt;![CDATA[adjust]]&gt;&lt;/string&gt;
 	 * &lt;/strings&gt;
 	 * </listing>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class Strings
 	{

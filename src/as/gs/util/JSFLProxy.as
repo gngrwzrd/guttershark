@@ -11,8 +11,6 @@ package gs.util
 	 * calling script files, or functions withing script files, and
 	 * handling parameters, and responses from the script. See the
 	 * <em>runScript</em> method for more documentation.</p>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	final public class JSFLProxy
 	{

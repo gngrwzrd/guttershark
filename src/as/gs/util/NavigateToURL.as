@@ -10,8 +10,6 @@ package gs.util
 	 * 
 	 * <p>You can also set this class to send an ExternalInterface
 	 * call to a function in javascript to open the page instead.</p>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class NavigateToURL 
 	{

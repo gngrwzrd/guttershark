@@ -198,8 +198,6 @@ package net.guttershark.managers
 	 * <li>FLVEvent.CUE_POINT</li>
 	 * <li>FLVEvent.STREAM_NOT_FOUND</li>
 	 * </ul>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	final public class EventManager
 	{

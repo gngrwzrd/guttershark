@@ -14,8 +14,6 @@ package gs.util.cache
 	 * cache.cacheObject("tocache",toCache);
 	 * trace(cache.getCachedObject("tocache").myKey);
 	 * </listing>
-	 * 
-	 * <script src="http://mint.codeendeavor.com/?js" type="text/javascript"></script>
 	 */
 	public class Cache
 	{
