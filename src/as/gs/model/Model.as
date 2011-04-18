@@ -1013,7 +1013,7 @@ package gs.model
 		 * 
 		 * @param groupId Optionally trace fonts that were declared as part of a specific group.
 		 */
-		public function traceFonts(groupId:String=null)
+		public function traceFonts(groupId:String=null):void
 		{
 			var child:XML;
 			var fc:Class;
