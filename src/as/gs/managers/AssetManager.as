@@ -3,12 +3,6 @@ package gs.managers
 	import deng.fzip.FZip;
 	import deng.fzip.FZipFile;
 	
-	import gs.display.flv.FLV;
-	import gs.util.BitmapUtils;
-	import gs.util.XMLLoader;
-	
-	import com.adobe.serialization.json.JSON;
-	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Loader;
@@ -21,6 +15,10 @@ package gs.managers
 	import flash.text.StyleSheet;
 	import flash.utils.Dictionary;
 	import flash.utils.setTimeout;
+	
+	import gs.display.flv.FLV;
+	import gs.util.BitmapUtils;
+	import gs.util.XMLLoader;
 
 	/**
 	 * The AssetManager class is a helper that stores all assets
@@ -135,7 +133,7 @@ package gs.managers
 			{
 				var s:String=assets[libraryName].data.toString();
 				if(s=="")return {};
-				return JSON.decode(s);
+				return JSON.parse(s);
 			}
 			throw(new Error("No JSON Object available for libraryName {" + libraryName + "}"));
 		}

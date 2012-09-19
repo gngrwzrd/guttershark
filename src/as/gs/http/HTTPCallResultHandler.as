@@ -1,13 +1,10 @@
 package gs.http
 {
-	import gs.util.XMLUtils;
+	import flash.net.URLVariables;
 	import flash.utils.ByteArray;
 	
 	import gs.util.StringUtils;
-	
-	import com.adobe.serialization.json.JSON;
-	
-	import flash.net.URLVariables;
+	import gs.util.XMLUtils;
 	
 	/**
 	 * The HTTPCallResultHandler class processes an HTTPCall response.
@@ -35,7 +32,7 @@ package gs.http
 			switch(call.responseFormat)
 			{
 				case "json":
-					var json:Object=JSON.decode(data.toString());
+					var json:Object=JSON.parse(data.toString());
 					if(json.result!=undefined)res=StringUtils.toBoolean(json.result);
 					if(json.success!=undefined)res=StringUtils.toBoolean(json.success);
 					if(json.fault!=undefined)

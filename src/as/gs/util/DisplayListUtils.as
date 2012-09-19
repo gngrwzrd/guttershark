@@ -1,7 +1,8 @@
 package gs.util 
 {
 	import flash.display.DisplayObject;
-	import flash.geom.Point;	
+	import flash.display.DisplayObjectContainer;
+	import flash.geom.Point;
 
 	/**
 	 * The DisplayListUtils class contains utlility methods for display
@@ -76,6 +77,33 @@ package gs.util
 		}
 		
 		/**
+		 * Scale proportionally.
+		 * 
+		 * @param mc The target display object to be scaled.
+		 * @param maxW The target width.
+		 * @param maxH The target height.
+		 * @param center Whether or not to center the display object in the new bounds.
+		 */
+		public static function scaleProportionally(mc:DisplayObject, maxW:Number, maxH:Number=0, scaleUp:Boolean = false, scaleDown:Boolean = true, center:Boolean = true):void {
+			if((mc.width < maxW || mc.height < maxH) && scaleUp) {
+				maxH = maxH == 0 ? maxW : maxH;
+				mc.width = maxW;
+				mc.height = maxH;
+				mc.scaleX < mc.scaleY ? mc.scaleY = mc.scaleX : mc.scaleX = mc.scaleY;
+			}
+			if((mc.width > maxW || mc.height > maxH) && scaleDown) {
+				maxH = maxH == 0 ? maxW : maxH;
+				mc.width = maxW;
+				mc.height = maxH;
+				mc.scaleX < mc.scaleY ? mc.scaleY = mc.scaleX : mc.scaleX = mc.scaleY;
+			}
+			if(center) {
+				mc.x = maxW/2 - mc.width/2;
+				mc.y = maxH/2 - mc.height/2;
+			}
+		}
+		
+		/**
 		 * Flip an object on the x or y axis.
 		 * 
 		 * @param obj The object to flip
@@ -92,6 +120,16 @@ package gs.util
 			var _prop:String=axis == "x" ? "width" : "height";
 			obj[_scale]=-obj[_scale];
 			obj[axis] += obj[_prop];
+		}
+		
+		/**
+		 * Removes all children from a clip.
+		 */
+		public static function removeAllChildren(target:DisplayObjectContainer):void {
+			if(target.numChildren<1) return;
+			var i:int=0;
+			var l:int=target.numChildren;
+			for(;i<l;i++)target.removeChildAt(0);
 		}
 	}
 }
